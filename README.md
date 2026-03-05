@@ -52,6 +52,14 @@ This library has the following peer dependencies:
 
 For a full list of dependencies, refer to the `package.json` file.
 
+## Depended Submodules
+
+The following sibling submodules must be present in the workspace (they are not declared as npm dependencies):
+
+- [`pearpass-lib-ui-theme-provider`](../pearpass-lib-ui-theme-provider)
+- [`pearpass-utils-password-check`](../pearpass-utils-password-check)
+- [`tether-dev-docs`](../tether-dev-docs)
+
 ## Related Projects
 
 - [pearpass-utils-password-check](https://github.com/tetherto/pearpass-utils-password-check): Utility functions for password validation.

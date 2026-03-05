@@ -12,15 +12,12 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "pearpass-lib-ui-theme-provider": "0.0.x",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.5",
     "react-native-svg": "15.11.2",
     "react-native-svg-transformer": "1.5.1",
-    "styled-components": "6.1.19",
-    "pearpass-utils-password-check": "0.0.x",
-    "tether-dev-docs": "0.0.x"
+    "styled-components": "6.1.19"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
