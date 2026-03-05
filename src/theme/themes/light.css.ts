@@ -34,4 +34,4 @@ export const lightThemeStyle = css.createTheme(tokens, {
     fontSize28: '28px',
     weightRegular: '400',
     weightMedium: '500',
-} as Record<string, string>);
+});

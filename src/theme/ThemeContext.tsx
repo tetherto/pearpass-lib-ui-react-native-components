@@ -58,7 +58,7 @@ export function ThemeProvider({ theme: initialTheme = ThemeType.Dark, children }
         <ThemeContext.Provider value={value}>
             <html.div
                 data-theme={themeType}
-                style={getThemeStyle(themeType)}
+                style={getThemeStyle(themeType) as any}
             >
                 {children}
             </html.div>

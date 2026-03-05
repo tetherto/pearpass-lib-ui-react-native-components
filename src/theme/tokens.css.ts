@@ -33,6 +33,6 @@ export const tokens = css.defineVars({
     fontSize28: '28px',
     weightRegular: '400',
     weightMedium: '500',
-} as Record<string, string>);
+});
 
 export type Tokens = typeof tokens;
