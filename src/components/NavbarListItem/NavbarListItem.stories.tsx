@@ -44,7 +44,7 @@ const storyStyles = css.create({
     display: 'flex',
     flexDirection: 'column',
     width: 260,
-    backgroundColor: tokens.colorSurfaceHover,
+    backgroundColor: 'transparent',
     padding: tokens.spacing8,
     borderRadius: tokens.radius8,
     borderWidth: 1,

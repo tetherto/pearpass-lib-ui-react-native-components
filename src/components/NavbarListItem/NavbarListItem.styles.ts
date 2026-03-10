@@ -10,7 +10,7 @@ export const styles = css.create({
     marginBlock: 1,
     paddingBlock: tokens.spacing8,
     paddingInline: tokens.spacing8,
-    backgroundColor: tokens.colorSurfaceHover,
+    backgroundColor: 'transparent',
     borderWidth: 0,
     borderRadius: tokens.radius8,
     cursor: 'pointer',
@@ -22,11 +22,11 @@ export const styles = css.create({
     transitionTimingFunction: 'ease',
     '@media (hover: hover)': {
       ':hover': {
-        backgroundColor: tokens.colorSurfaceElevatedOnInteraction
+        backgroundColor: tokens.colorSurfaceHover
       }
     },
     ':active': {
-      backgroundColor: tokens.colorSurfaceElevatedOnInteraction
+      backgroundColor: tokens.colorSurfaceHover
     },
     ':focus-visible': {
       outlineWidth: 2,
@@ -47,10 +47,10 @@ export const styles = css.create({
     borderBottomColor: tokens.colorBorderPrimary
   },
   selected: {
-    backgroundColor: tokens.colorSurfaceElevatedOnInteraction,
+    backgroundColor: tokens.colorSurfaceHover,
     '@media (hover: hover)': {
       ':hover': {
-        backgroundColor: tokens.colorSurfaceElevatedOnInteraction
+        backgroundColor: tokens.colorSurfaceHover
       }
     }
   },
