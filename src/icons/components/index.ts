@@ -27,3 +27,5 @@ export { default as KeyboardArrowRightRound } from "./KeyboardArrowRightRound";
 export { default as KeyboardArrowRightSharp } from "./KeyboardArrowRightSharp";
 export { default as KeyboardArrowRightTone } from "./KeyboardArrowRightTone";
 export { default as VerifiedUser } from "./VerifiedUser";
+export { default as MoreVert } from "./MoreVert";
+export { default as Share } from "./Share";

@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemScreenHeader renders with actions 1`] = `
+<header
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:9"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:10"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <div
+      aria-hidden={true}
+      className="margin-x1ghz6dp padding-x1717udv"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:11"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      <div
+        className="margin-x1ghz6dp padding-x1717udv"
+        data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:13"
+        data-style-src="react-strict-dom:web/runtime.js"
+        style={{}}
+      >
+        <span
+          className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+          data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:14"
+          data-style-src="react-strict-dom:web/runtime.js"
+          style={{}}
+        >
+          P
+        </span>
+      </div>
+    </div>
+    <span
+      className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:20"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      PearPass credential
+    </span>
+  </div>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:23"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <button>
+      Share
+    </button>
+    <button>
+      More
+    </button>
+  </div>
+</header>
+`;
+
+exports[`ItemScreenHeader renders with all props 1`] = `
+<header
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:9"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:10"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <div
+      aria-hidden={true}
+      className="margin-x1ghz6dp padding-x1717udv"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:11"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      <span>
+        icon
+      </span>
+    </div>
+    <span
+      className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:20"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      PearPass credential
+    </span>
+  </div>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:23"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <button>
+      Share
+    </button>
+    <button>
+      More
+    </button>
+  </div>
+</header>
+`;
+
+exports[`ItemScreenHeader renders with icon and title 1`] = `
+<header
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:9"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:10"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <div
+      aria-hidden={true}
+      className="margin-x1ghz6dp padding-x1717udv"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:11"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      <span>
+        icon
+      </span>
+    </div>
+    <span
+      className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:20"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      PearPass credential
+    </span>
+  </div>
+</header>
+`;
+
+exports[`ItemScreenHeader renders with title only 1`] = `
+<header
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:9"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:10"
+    data-style-src="react-strict-dom:web/runtime.js"
+    style={{}}
+  >
+    <div
+      aria-hidden={true}
+      className="margin-x1ghz6dp padding-x1717udv"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:11"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      <div
+        className="margin-x1ghz6dp padding-x1717udv"
+        data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:13"
+        data-style-src="react-strict-dom:web/runtime.js"
+        style={{}}
+      >
+        <span
+          className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+          data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:14"
+          data-style-src="react-strict-dom:web/runtime.js"
+          style={{}}
+        >
+          P
+        </span>
+      </div>
+    </div>
+    <span
+      className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+      data-element-src="ItemScreenHeader/ItemScreenHeader.tsx:20"
+      data-style-src="react-strict-dom:web/runtime.js"
+      style={{}}
+    >
+      PearPass credential
+    </span>
+  </div>
+</header>
+`;
