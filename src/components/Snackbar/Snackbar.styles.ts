@@ -1,5 +1,5 @@
-import { css } from 'react-strict-dom';
-import { tokens } from '../../theme/tokens.css';
+import { css } from 'react-strict-dom'
+import { tokens } from '../../theme/tokens.css'
 
 export const styles = css.create({
   root: {
@@ -13,19 +13,19 @@ export const styles = css.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: tokens.colorBorderPrimary,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: tokens.backgroundSnackbar,
     maxWidth: 300,
-    boxSizing: 'border-box',
+    boxSizing: 'border-box'
   },
   iconContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexShrink: 0,
+    flexShrink: 0
   },
   iconSize: (size: number) => ({
     width: size,
-    height: size,
+    height: size
   }),
   text: {
     fontFamily: tokens.fontPrimary,
@@ -34,6 +34,6 @@ export const styles = css.create({
     color: tokens.colorOnPrimary,
     minWidth: 0,
     numberOfLines: 3,
-    overflow: 'hidden',
-  },
-});
+    overflow: 'hidden'
+  }
+})

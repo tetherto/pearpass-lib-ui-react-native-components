@@ -1,5 +1,6 @@
 import React from 'react';
 import { html } from 'react-strict-dom';
+import { Link } from '../Link';
 import { styles, variantStyleMap, sizeStyleMap } from './AlertMessage.styles';
 import { AlertMessageProps } from './types';
 
@@ -26,15 +27,13 @@ export const AlertMessage = React.forwardRef<HTMLDivElement, AlertMessageProps>(
           </html.div>
         </html.div>
         {actionText && (
-          <html.span
-            role="button"
-            tabIndex={0}
+          <Link
             onClick={onAction}
             style={styles.link}
             data-testid={actionTestId}
           >
             {actionText}
-          </html.span>
+          </Link>
         )}
       </html.div>
     );
