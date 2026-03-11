@@ -1,0 +1,1 @@
+export { withIconSize } from './withIconSize';

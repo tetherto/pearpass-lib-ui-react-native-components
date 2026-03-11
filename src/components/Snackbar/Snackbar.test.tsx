@@ -15,6 +15,16 @@ jest.mock('./Snackbar.config', () => ({
   ICON_SIZE: 16
 }))
 
+jest.mock('../Text/Text.styles', () => ({
+  styles: {
+    textBase: {},
+    variantLabel: {},
+    variantBody: {},
+    variantBodyEmphasized: {},
+    variantCaption: {}
+  }
+}))
+
 const DummyIcon = ({ width, height }: { width?: number; height?: number }) => {
   void width
   void height
