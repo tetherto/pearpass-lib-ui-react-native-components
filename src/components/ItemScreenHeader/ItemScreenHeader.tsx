@@ -1,6 +1,7 @@
 import React from 'react';
 import { html } from 'react-strict-dom';
 import { styles } from './ItemScreenHeader.styles';
+import { Text } from '../Text';
 import { ItemScreenHeaderProps } from './types';
 
 export const ItemScreenHeader = React.forwardRef<HTMLElement, ItemScreenHeaderProps>(
@@ -11,13 +12,13 @@ export const ItemScreenHeader = React.forwardRef<HTMLElement, ItemScreenHeaderPr
                     <html.div style={styles.icon} aria-hidden={true}>
                         {icon ?? (
                             <html.div style={styles.placeholder}>
-                                <html.span style={styles.placeholderText}>
+                                <Text style={styles.placeholderText}>
                                     {title.charAt(0).toUpperCase()}
-                                </html.span>
+                                </Text>
                             </html.div>
                         )}
                     </html.div>
-                    <html.span style={styles.title}>{title}</html.span>
+                    <Text style={styles.title}>{title}</Text>
                 </html.div>
 
                 {actions && <html.div style={styles.actions}>{actions}</html.div>}

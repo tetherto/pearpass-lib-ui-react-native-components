@@ -2,6 +2,16 @@ import React from 'react';
 import renderer, { act } from 'react-test-renderer';
 import { ItemScreenHeader } from './ItemScreenHeader';
 
+jest.mock('../Text/Text.styles', () => ({
+    styles: {
+        textBase: {},
+        variantLabel: {},
+        variantBody: {},
+        variantBodyEmphasized: {},
+        variantCaption: {},
+    },
+}));
+
 jest.mock('./ItemScreenHeader.styles', () => ({
     styles: {
         container: {},
