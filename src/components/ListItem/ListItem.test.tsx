@@ -26,6 +26,16 @@ jest.mock('./ListItem.config', () => ({
   ICON_SIZE: 32
 }))
 
+jest.mock('../Text/Text.styles', () => ({
+  styles: {
+    textBase: {},
+    variantLabel: {},
+    variantBody: {},
+    variantBodyEmphasized: {},
+    variantCaption: {}
+  }
+}))
+
 const DummyIcon = ({ width, height }: { width?: number; height?: number }) => {
   void width
   void height

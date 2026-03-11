@@ -4,6 +4,7 @@ export { default as AccountCircleOutlined } from "./AccountCircleOutlined";
 export { default as AccountCircleRound } from "./AccountCircleRound";
 export { default as AccountCircleSharp } from "./AccountCircleSharp";
 export { default as AccountCircleTone } from "./AccountCircleTone";
+export { default as Check } from "./Check";
 export { default as ErrorFilled } from "./ErrorFilled";
 export { default as KeyboardArrowLeftFilled } from "./KeyboardArrowLeftFilled";
 export { default as KeyboardArrowLeftOutlined } from "./KeyboardArrowLeftOutlined";

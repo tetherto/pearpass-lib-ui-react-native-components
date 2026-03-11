@@ -3,16 +3,10 @@ import { html } from 'react-strict-dom'
 import { styles } from './ListItem.styles'
 import { ICON_SIZE } from './ListItem.config'
 import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform } from './types'
-
-const defaultPlatform: ListItemPlatform =
-  typeof document !== 'undefined' ? 'web' : 'mobile'
+import { Text } from '../Text'
+import { withIconSize, defaultPlatform } from '../../utils'
 
 type HtmlDivProps = React.ComponentProps<typeof html.div>
-
-type SizableIconProps = {
-  width?: number
-  height?: number
-}
 
 export type ListItemProps = Omit<HtmlDivProps, 'children'> & {
   icon?: React.ReactNode
@@ -32,33 +26,28 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, testID, ...rest },
     ref
   ) {
-    const withIconSize = (iconElement: React.ReactNode) =>
-      React.isValidElement<SizableIconProps>(iconElement)
-        ? React.cloneElement(iconElement, { width: iconSize, height: iconSize })
-        : iconElement
-
     const renderSubtitle = () => {
       if (!subtitle) return null
 
       if (typeof subtitle === 'string') {
-        return <html.span style={styles.subtitle}>{subtitle}</html.span>
+        return <Text style={styles.subtitle}>{subtitle}</Text>
       }
 
       if (subtitleLayout === 'vertical') {
         return (
           <html.div style={styles.subtitleDividerContainerVertical}>
-            <html.span style={styles.subtitleSegment}>{subtitle.primary}</html.span>
+            <Text style={styles.subtitleSegment}>{subtitle.primary}</Text>
             <html.div style={styles.dividerLineHorizontal} />
-            <html.span style={styles.subtitleSegment}>{subtitle.secondary}</html.span>
+            <Text style={styles.subtitleSegment}>{subtitle.secondary}</Text>
           </html.div>
         )
       }
 
       return (
         <html.div style={styles.subtitleDividerContainer}>
-          <html.span style={styles.subtitleSegment}>{subtitle.primary}</html.span>
+          <Text style={styles.subtitleSegment}>{subtitle.primary}</Text>
           <html.div style={styles.dividerLine} />
-          <html.span style={styles.subtitleSegment}>{subtitle.secondary}</html.span>
+          <Text style={styles.subtitleSegment}>{subtitle.secondary}</Text>
         </html.div>
       )
     }
@@ -70,12 +59,12 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
             style={[styles.iconContainer, styles.iconSize(iconSize)]}
             aria-hidden={true}
           >
-            {withIconSize(icon)}
+            {withIconSize(icon, iconSize)}
           </html.span>
         )}
 
         <html.div style={styles.content}>
-          <html.span style={styles.title}>{title}</html.span>
+          <Text style={styles.title}>{title}</Text>
           {renderSubtitle()}
         </html.div>
 
