@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContextMenu opens menu on trigger click 1`] = `
+<div
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ContextMenu/ContextMenu.tsx:61"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ContextMenu/ContextMenu.tsx:62"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+  >
+    <button>
+      Open
+    </button>
+  </div>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ContextMenu/ContextMenu.tsx:66"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+    style={{}}
+  />
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ContextMenu/ContextMenu.tsx:67"
+    data-style-src="react-strict-dom:web/runtime.js"
+    role="menu"
+    style={{}}
+  >
+    <div>
+      Menu content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ContextMenu renders trigger correctly 1`] = `
+<div
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="ContextMenu/ContextMenu.tsx:61"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="ContextMenu/ContextMenu.tsx:62"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+  >
+    <button>
+      Open
+    </button>
+  </div>
+</div>
+`;
