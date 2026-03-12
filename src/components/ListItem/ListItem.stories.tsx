@@ -10,10 +10,11 @@ import {
   AccountCircleRound,
   MoreVert,
   Share,
-  KeyboardArrowRightFilled
+  KeyboardArrowRightFilled,
+  ErrorFilled
 } from '../../icons'
 
-const INCLUDE_PROPS = ['title', 'subtitle', 'subtitleLayout', 'icon', 'iconSize', 'rightElement', 'selected', 'showDivider', 'variant', 'iconAlign']
+const INCLUDE_PROPS = ['title', 'subtitle', 'subtitleLayout', 'icon', 'iconSize', 'rightElement', 'selected', 'showDivider', 'variant', 'iconAlign', 'selectionMode', 'isSelected']
 
 const meta = {
   title: 'Components/ListItem',
@@ -41,6 +42,11 @@ const meta = {
       control: 'select',
       options: ['center', 'top']
     },
+    selectionMode: {
+      control: 'select',
+      options: ['none', 'multi']
+    },
+    isSelected: { control: 'boolean' },
     icon: { control: false },
     rightElement: { control: false }
   }
@@ -424,6 +430,37 @@ export const IconAlignment: Story = {
           />
         </html.div>
       </html.div>
+    </html.div>
+  )
+}
+
+export const SelectionMode: Story = {
+  args: { title: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.container}>
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="Microsoft 365"
+        subtitle="simon.j@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+        rightElement={<ErrorFilled color="#D13B3D" width={16} height={16} />}
+      />
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="Netflix"
+        subtitle="simon.j@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+      />
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="LinkedIn"
+        subtitle="alex.k@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+      />
     </html.div>
   )
 }

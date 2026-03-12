@@ -33,6 +33,12 @@ jest.mock('./ListItem.config', () => ({
   }
 }))
 
+jest.mock('../Checkbox/Checkbox', () => ({
+  Checkbox: ({ checked, onChange }: { checked?: boolean; onChange?: () => void }) => (
+    <button role="checkbox" aria-checked={checked} onClick={onChange} />
+  )
+}))
+
 jest.mock('../Text/Text.styles', () => ({
   styles: {
     textBase: {},
@@ -298,5 +304,60 @@ describe('ListItem', () => {
     })
 
     expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders with selectionMode multi', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Selectable Item"
+          subtitle="user@example.com"
+          selectionMode="multi"
+          isSelected={false}
+          onSelect={() => {}}
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders with selectionMode multi and isSelected true', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Selected Item"
+          selectionMode="multi"
+          isSelected={true}
+          onSelect={() => {}}
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('does not render checkbox when selectionMode is none', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Normal Item"
+          selectionMode="none"
+        />
+      )
+    })
+
+    const root = component!.root.findByType('div')
+    const checkboxes = root.findAllByProps({ role: 'checkbox' })
+    expect(checkboxes.length).toBe(0)
   })
 })
