@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown opens menu on trigger click 1`] = `
+<div
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="Dropdown/Dropdown.tsx:62"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="Dropdown/Dropdown.tsx:63"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+  >
+    <button>
+      Select
+    </button>
+  </div>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="Dropdown/Dropdown.tsx:67"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+    style={{}}
+  />
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="Dropdown/Dropdown.tsx:68"
+    data-style-src="react-strict-dom:web/runtime.js"
+    role="listbox"
+    style={{}}
+  >
+    <div>
+      Option 1
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dropdown renders trigger correctly 1`] = `
+<div
+  className="margin-x1ghz6dp padding-x1717udv"
+  data-element-src="Dropdown/Dropdown.tsx:62"
+  data-style-src="react-strict-dom:web/runtime.js"
+  ref={null}
+  style={{}}
+>
+  <div
+    className="margin-x1ghz6dp padding-x1717udv"
+    data-element-src="Dropdown/Dropdown.tsx:63"
+    data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
+  >
+    <button>
+      Select
+    </button>
+  </div>
+</div>
+`;
