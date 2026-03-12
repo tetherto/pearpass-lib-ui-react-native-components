@@ -121,5 +121,12 @@ export const styles = css.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: tokens.colorBorderSecondary
+  },
+  variantDefault: {},
+  variantDestructive: {
+    backgroundColor: tokens.colorSurfaceDestructive
+  },
+  iconAlignTop: {
+    alignSelf: 'flex-start'
   }
 })

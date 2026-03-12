@@ -1,8 +1,8 @@
 import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './ListItem.styles'
-import { ICON_SIZE } from './ListItem.config'
-import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform } from './types'
+import { ICON_SIZE, variantStyleMap } from './ListItem.config'
+import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform, ListItemVariant, ListItemIconAlign } from './types'
 import { Text } from '../Text'
 import { withIconSize, defaultPlatform } from '../../utils'
 
@@ -18,12 +18,14 @@ export type ListItemProps = Omit<HtmlDivProps, 'children'> & {
   platform?: ListItemPlatform
   selected?: boolean
   showDivider?: boolean
+  variant?: ListItemVariant
+  iconAlign?: ListItemIconAlign
   testID?: string
 }
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
   function ListItem(
-    { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, testID, ...rest },
+    { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, variant = 'default', iconAlign = 'center', testID, ...rest },
     ref
   ) {
     const renderSubtitle = () => {
@@ -53,10 +55,10 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     }
 
     return (
-      <html.div {...rest} ref={ref} data-testid={testID} style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider]}>
+      <html.div {...rest} ref={ref} data-testid={testID} style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider, variantStyleMap[variant]]}>
         {icon && (
           <html.span
-            style={[styles.iconContainer, styles.iconSize(iconSize)]}
+            style={[styles.iconContainer, styles.iconSize(iconSize), iconAlign === 'top' && styles.iconAlignTop]}
             aria-hidden={true}
           >
             {withIconSize(icon, iconSize)}
