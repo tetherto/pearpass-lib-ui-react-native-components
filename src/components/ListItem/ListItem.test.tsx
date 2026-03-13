@@ -18,12 +18,25 @@ jest.mock('./ListItem.styles', () => ({
     rightContainer: {},
     mobile: {},
     selected: {},
-    showDivider: {}
+    showDivider: {},
+    variantDefault: {},
+    variantDestructive: {},
+    iconAlignTop: {}
   }
 }))
 
 jest.mock('./ListItem.config', () => ({
-  ICON_SIZE: 32
+  ICON_SIZE: 32,
+  variantStyleMap: {
+    default: {},
+    destructive: {}
+  }
+}))
+
+jest.mock('../Checkbox/Checkbox', () => ({
+  Checkbox: ({ checked, onChange }: { checked?: boolean; onChange?: () => void }) => (
+    <button role="checkbox" aria-checked={checked} onClick={onChange} />
+  )
 }))
 
 jest.mock('../Text/Text.styles', () => ({
@@ -256,5 +269,95 @@ describe('ListItem', () => {
 
     const tree = component!.toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with destructive variant', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Delete Account"
+          subtitle="This action cannot be undone"
+          variant="destructive"
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders with iconAlign top', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Top Aligned"
+          subtitle={{ primary: 'Primary', secondary: 'Secondary' }}
+          subtitleLayout="vertical"
+          iconAlign="top"
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders with selectionMode multi', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Selectable Item"
+          subtitle="user@example.com"
+          selectionMode="multi"
+          isSelected={false}
+          onSelect={() => {}}
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders with selectionMode multi and isSelected true', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Selected Item"
+          selectionMode="multi"
+          isSelected={true}
+          onSelect={() => {}}
+        />
+      )
+    })
+
+    expect(component!.toJSON()).toMatchSnapshot()
+  })
+
+  it('does not render checkbox when selectionMode is none', () => {
+    let component: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <ListItem
+          icon={<DummyIcon />}
+          title="Normal Item"
+          selectionMode="none"
+        />
+      )
+    })
+
+    const root = component!.root.findByType('div')
+    const checkboxes = root.findAllByProps({ role: 'checkbox' })
+    expect(checkboxes.length).toBe(0)
   })
 })

@@ -7,10 +7,14 @@ import {
   AccountCircleOutlined,
   AccountCircleSharp,
   AccountCircleTone,
-  AccountCircleRound
+  AccountCircleRound,
+  MoreVert,
+  Share,
+  KeyboardArrowRightFilled,
+  ErrorFilled
 } from '../../icons'
 
-const INCLUDE_PROPS = ['title', 'subtitle', 'subtitleLayout', 'icon', 'iconSize', 'rightElement', 'selected', 'showDivider']
+const INCLUDE_PROPS = ['title', 'subtitle', 'subtitleLayout', 'icon', 'iconSize', 'rightElement', 'selected', 'showDivider', 'variant', 'iconAlign', 'selectionMode', 'isSelected']
 
 const meta = {
   title: 'Components/ListItem',
@@ -30,6 +34,19 @@ const meta = {
     iconSize: { control: { type: 'number' } },
     selected: { control: 'boolean' },
     showDivider: { control: 'boolean' },
+    variant: {
+      control: 'select',
+      options: ['default', 'destructive']
+    },
+    iconAlign: {
+      control: 'select',
+      options: ['center', 'top']
+    },
+    selectionMode: {
+      control: 'select',
+      options: ['none', 'multi']
+    },
+    isSelected: { control: 'boolean' },
     icon: { control: false },
     rightElement: { control: false }
   }
@@ -105,6 +122,23 @@ const storyStyles = css.create({
     height: 12,
     borderRadius: 6,
     backgroundColor: 'transparent'
+  },
+  grid: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: tokens.spacing24,
+    flexWrap: 'wrap'
+  },
+  gridColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: tokens.spacing12
+  },
+  gridTitle: {
+    fontFamily: tokens.fontPrimary,
+    fontSize: tokens.fontSize14,
+    fontWeight: tokens.weightMedium,
+    color: tokens.colorTextPrimary
   }
 })
 
@@ -256,6 +290,177 @@ export const TextTruncation: Story = {
           />
         </html.div>
       </html.div>
+    </html.div>
+  )
+}
+
+export const VariantMatrix: Story = {
+  args: { title: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.grid}>
+      <html.div style={storyStyles.gridColumn}>
+        <html.div style={storyStyles.gridTitle}>Vault List Item</html.div>
+        <html.div style={storyStyles.container}>
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Personal Vault"
+            subtitle="Private"
+            rightElement={<><Share color="white" width={16} height={16} /><MoreVert color="white" width={16} height={16} /></>}
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Personal Vault"
+            subtitle="2 Members"
+            rightElement={<><Share color="white" width={16} height={16} /><MoreVert color="white" width={16} height={16} /></>}
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Personal Vault"
+            subtitle="Private"
+            rightElement={<><Share color="white" width={16} height={16} /><MoreVert color="white" width={16} height={16} /></>}
+          />
+        </html.div>
+      </html.div>
+      <html.div style={storyStyles.gridColumn}>
+        <html.div style={storyStyles.gridTitle}>List Item</html.div>
+        <html.div style={storyStyles.container}>
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="LinkedIn"
+            subtitle="alex.k@gmail.com"
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="LinkedIn"
+            subtitle="alex.k@gmail.com"
+            rightElement={<MoreVert color="white" width={16} height={16} />}
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="LinkedIn"
+            subtitle="alex.k@gmail.com"
+            rightElement={<><html.span style={storyStyles.sectionTitle}>708 345</html.span><Share color="white" width={16} height={16} /></>}
+          />
+        </html.div>
+      </html.div>
+      <html.div style={storyStyles.gridColumn}>
+        <html.div style={storyStyles.gridTitle}>Context Menu List Item</html.div>
+        <html.div style={storyStyles.container}>
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Label"
+            subtitle="Supporting Text"
+            iconAlign="top"
+            rightElement={<KeyboardArrowRightFilled color="white" width={16} height={16} />}
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Label"
+            subtitle="Supporting Text"
+            iconAlign="top"
+            variant="destructive"
+            rightElement={<KeyboardArrowRightFilled color="white" width={16} height={16} />}
+          />
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="Label"
+            subtitle="Supporting Text"
+            iconAlign="top"
+            rightElement={<KeyboardArrowRightFilled color="white" width={16} height={16} />}
+          />
+        </html.div>
+      </html.div>
+    </html.div>
+  )
+}
+
+export const IconAlignment: Story = {
+  args: { title: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.stack}>
+      <html.div style={storyStyles.section}>
+        <html.div style={storyStyles.sectionTitle}>Center (default)</html.div>
+        <html.div style={storyStyles.container}>
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="GitHub Login"
+            subtitle="john@github.com"
+            iconAlign="center"
+          />
+          <ListItem
+            icon={<AccountCircleOutlined color="white" />}
+            title="Google Account"
+            subtitle={{ primary: 'john@gmail.com', secondary: 'Updated today' }}
+            subtitleLayout="vertical"
+            iconAlign="center"
+          />
+          <ListItem
+            icon={<AccountCircleSharp color="white" />}
+            title="Visa Credit Card"
+            subtitle="**** 4242"
+            iconAlign="center"
+            rightElement={<SampleMoreButton />}
+          />
+        </html.div>
+      </html.div>
+      <html.div style={storyStyles.section}>
+        <html.div style={storyStyles.sectionTitle}>Top</html.div>
+        <html.div style={storyStyles.container}>
+          <ListItem
+            icon={<AccountCircleFilled color="white" />}
+            title="GitHub Login"
+            subtitle="john@github.com"
+            iconAlign="top"
+          />
+          <ListItem
+            icon={<AccountCircleOutlined color="white" />}
+            title="Google Account"
+            subtitle={{ primary: 'john@gmail.com', secondary: 'Updated today' }}
+            subtitleLayout="vertical"
+            iconAlign="top"
+          />
+          <ListItem
+            icon={<AccountCircleSharp color="white" />}
+            title="Visa Credit Card"
+            subtitle="**** 4242"
+            iconAlign="top"
+            rightElement={<SampleMoreButton />}
+          />
+        </html.div>
+      </html.div>
+    </html.div>
+  )
+}
+
+export const SelectionMode: Story = {
+  args: { title: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.container}>
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="Microsoft 365"
+        subtitle="simon.j@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+        rightElement={<ErrorFilled color="#D13B3D" width={16} height={16} />}
+      />
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="Netflix"
+        subtitle="simon.j@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+      />
+      <ListItem
+        icon={<AccountCircleFilled color="white" />}
+        title="LinkedIn"
+        subtitle="alex.k@gmail.com"
+        selectionMode="multi"
+        isSelected={false}
+      />
     </html.div>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './ListItem.styles'
-import { ICON_SIZE } from './ListItem.config'
-import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform } from './types'
+import { ICON_SIZE, variantStyleMap } from './ListItem.config'
+import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform, ListItemVariant, ListItemIconAlign, ListItemSelectionMode } from './types'
 import { Text } from '../Text'
+import { Checkbox } from '../Checkbox'
 import { withIconSize, defaultPlatform } from '../../utils'
 
 type HtmlDivProps = React.ComponentProps<typeof html.div>
@@ -18,12 +19,17 @@ export type ListItemProps = Omit<HtmlDivProps, 'children'> & {
   platform?: ListItemPlatform
   selected?: boolean
   showDivider?: boolean
+  variant?: ListItemVariant
+  iconAlign?: ListItemIconAlign
+  selectionMode?: ListItemSelectionMode
+  isSelected?: boolean
+  onSelect?: () => void
   testID?: string
 }
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
   function ListItem(
-    { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, testID, ...rest },
+    { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, variant = 'default', iconAlign = 'center', selectionMode = 'none', isSelected = false, onSelect, testID, ...rest },
     ref
   ) {
     const renderSubtitle = () => {
@@ -53,10 +59,14 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     }
 
     return (
-      <html.div {...rest} ref={ref} data-testid={testID} style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider]}>
+      <html.div {...rest} ref={ref} data-testid={testID} style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider, variantStyleMap[variant]]}>
+        {selectionMode === 'multi' && (
+          <Checkbox checked={isSelected} onChange={onSelect ? () => onSelect() : undefined} />
+        )}
+
         {icon && (
           <html.span
-            style={[styles.iconContainer, styles.iconSize(iconSize)]}
+            style={[styles.iconContainer, styles.iconSize(iconSize), iconAlign === 'top' && styles.iconAlignTop]}
             aria-hidden={true}
           >
             {withIconSize(icon, iconSize)}
