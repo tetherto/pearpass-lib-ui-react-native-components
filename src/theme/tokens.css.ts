@@ -26,6 +26,8 @@ export const tokens = css.defineVars({
     colorSurfaceError: '#D1383D',
     colorSurfaceWarning: '#D7D245',
     colorFocusRing: '#B0D944',
+    colorTextTertiary: '#F6F6F6',
+    colorLinkText: '#BADE5B',
     backgroundSnackbar: '#FFFFFF',
     spacing4: '4px',
     spacing6: '6px',

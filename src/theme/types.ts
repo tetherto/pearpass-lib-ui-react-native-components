@@ -25,6 +25,8 @@ export interface ThemeColors {
     colorSurfaceWarning: string;
 
     colorFocusRing: string;
+    colorTextTertiary: string;
+    colorLinkText: string;
 }
 
 export interface Theme {
