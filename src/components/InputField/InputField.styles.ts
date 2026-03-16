@@ -30,9 +30,11 @@ export const styles = css.create({
     },
   },
   containerFocused: {
-    borderColor: tokens.colorPrimary,
+    borderColor: tokens.colorFocusRing,
+    backgroundColor: tokens.colorSurfaceHover,
+    boxShadow: '0px 0px 0px 2px rgba(176,217,68,0.35)',
     ':hover': {
-      borderColor: tokens.colorPrimary,
+      borderColor: tokens.colorFocusRing,
     },
   },
   containerError: {
@@ -58,11 +60,11 @@ export const styles = css.create({
     fontWeight: tokens.weightRegular,
     fontSize: tokens.fontSize12,
     lineHeight: tokens.spacing16,
-    color: tokens.colorTextSecondary,
+    color: tokens.colorTextPrimary,
   },
   input: {
     fontFamily: tokens.fontPrimary,
-    fontWeight: tokens.weightRegular,
+    fontWeight: tokens.weightMedium,
     fontSize: tokens.fontSize14,
     lineHeight: tokens.spacing20,
     color: tokens.colorTextPrimary,
