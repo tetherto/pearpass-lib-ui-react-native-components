@@ -1,9 +1,9 @@
 import React from 'react';
 import { html } from 'react-strict-dom';
 import { EyeFilled, EyeOutlined } from '../../icons';
-import { Button } from '../Button/Button';
 import { InputField } from '../InputField/InputField';
 import { PasswordIndicator } from '../PasswordIndicator/PasswordIndicator';
+import { useTheme } from '../../theme';
 import { styles } from './PasswordField.styles';
 import { PasswordFieldProps } from './types';
 
@@ -23,20 +23,10 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
     testID,
   } = props;
 
+  const { theme } = useTheme();
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const toggleVisibility = (): void => setIsVisible((prev) => !prev);
-
-  const eyeIcon = (
-    <Button
-      variant="tertiary"
-      onClick={toggleVisibility}
-      size="small"
-      aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
-      iconBefore={isVisible ? <EyeFilled width={16} height={16} /> : <EyeOutlined width={16} height={16} />}
-      data-testid="password-field-eye-button"
-    />
-  );
 
   const rightSlot = (
     <html.div style={styles.rightSlotContainer}>
@@ -46,7 +36,17 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
           <html.div style={styles.divider} />
         </>
       )}
-      {eyeIcon}
+      <html.button
+        onClick={toggleVisibility}
+        aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
+        style={styles.eyeButton}
+        data-testid="password-field-eye-button"
+      >
+        {isVisible
+          ? <EyeFilled width={16} height={16} color={theme.colors.colorTextPrimary} />
+          : <EyeOutlined width={16} height={16} color={theme.colors.colorTextPrimary} />
+        }
+      </html.button>
     </html.div>
   );
 
