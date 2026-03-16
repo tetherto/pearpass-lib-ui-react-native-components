@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { html, css } from 'react-strict-dom';
 import { AlertMessage } from './AlertMessage';
-import AccountCircleSharp from '../../icons/components/AccountCircleSharp';
+import ReportProblemRound from '../../icons/components/ReportProblemRound';
+import VerifiedUser from '../../icons/components/VerifiedUser';
+import ErrorFilled from '../../icons/components/ErrorFilled';
 import { tokens } from '../../theme/tokens.css';
 
 const meta: Meta<typeof AlertMessage> = {
@@ -11,7 +13,7 @@ const meta: Meta<typeof AlertMessage> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['success', 'error'],
+      options: ['success', 'warning', 'error'],
     },
     size: {
       control: { type: 'select' },
@@ -67,13 +69,23 @@ const storyStyles = css.create({
   },
 });
 
-export const BigSuccess: Story = {
+export const Warning: Story = {
+  args: {
+    variant: 'warning',
+    size: 'small',
+    title: 'Warning',
+    description: "Don't forget your Master password. It's the only way to access your vault. We can't help recover it. Back it up securely.",
+    icon: <ReportProblemRound width={16} height={16} />,
+  },
+};
+
+export const SmallSuccess: Story = {
   args: {
     variant: 'success',
-    size: 'big',
-    title: 'Operation Successful',
+    size: 'small',
+    title: 'Success',
     description: 'Your changes have been saved successfully.',
-    icon: <AccountCircleSharp color={tokens.colorPrimary} />,
+    icon: <VerifiedUser width={16} height={16} />,
   },
 };
 
@@ -83,51 +95,27 @@ export const MediumError: Story = {
     size: 'medium',
     title: 'Operation Failed',
     description: 'There was an error saving your changes. Please try again.',
-    icon: <AccountCircleSharp color={tokens.colorSurfaceError} />,
+    icon: <ErrorFilled width={16} height={16} />,
   },
 };
 
-export const SmallSuccess: Story = {
+export const BigSuccess: Story = {
   args: {
     variant: 'success',
-    size: 'small',
+    size: 'big',
     title: 'Operation Successful',
     description: 'Your changes have been saved successfully.',
-    icon: <AccountCircleSharp color={tokens.colorPrimary} />,
+    icon: <VerifiedUser width={16} height={16} />,
   },
 };
 
-export const WithActionBig: Story = {
+export const WithAction: Story = {
   args: {
     variant: 'error',
-    size: 'big',
-    title: 'Operation Failed',
-    description: 'There was an error saving your changes. Please try again.',
-    icon: <AccountCircleSharp color={tokens.colorSurfaceError} />,
-    actionText: 'Retry',
-    onAction: () => console.log('Retry clicked!'),
-  },
-};
-
-export const WithActionMedium: Story = {
-  args: {
-    variant: 'success',
     size: 'medium',
-    title: 'Operation Successful',
-    description: 'Your changes have been saved successfully.',
-    icon: <AccountCircleSharp color={tokens.colorPrimary} />,
-    actionText: 'View Details',
-    onAction: () => console.log('View details clicked!'),
-  },
-};
-
-export const WithActionSmall: Story = {
-  args: {
-    variant: 'success',
-    size: 'small',
     title: 'Operation Failed',
-    description: 'There was an error saving your changes. Please try again.',
-    icon: <AccountCircleSharp color={tokens.colorPrimary} />,
+    description: 'There was an error saving your changes.',
+    icon: <ErrorFilled width={16} height={16} />,
     actionText: 'Retry',
     onAction: () => console.log('Retry clicked!'),
   },
@@ -139,93 +127,41 @@ export const VariantMatrix: Story = {
   },
   render: () => (
     <html.div style={storyStyles.container}>
-      {/* Big Section */}
       <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Big Size</html.div>
+        <html.div style={storyStyles.sectionTitle}>Small</html.div>
         <html.div style={storyStyles.row}>
           <html.div style={storyStyles.cell}>
             <html.div style={storyStyles.caption}>Success</html.div>
-            <AlertMessage
-              variant="success"
-              size="big"
-              title="Success Title"
-              description="This is a big success message with a long description to see how it wraps."
-              icon={<AccountCircleSharp color={tokens.colorPrimary} />}
-            />
+            <AlertMessage variant="success" size="small" title="" description="Small success message." icon={<VerifiedUser width={16} height={16} />} />
           </html.div>
           <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Error with Action</html.div>
-            <AlertMessage
-              variant="error"
-              size="big"
-              title="Error Title"
-              description="This is a big error message with an action button."
-              icon={<AccountCircleSharp color={tokens.colorSurfaceError} />}
-              actionText="Action"
-              onAction={() => { }}
-            />
-          </html.div>
-        </html.div>
-      </html.div>
-
-      {/* Medium Section */}
-      <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Medium Size</html.div>
-        <html.div style={storyStyles.row}>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Success with Action</html.div>
-            <AlertMessage
-              variant="success"
-              size="medium"
-              title="Success Title"
-              description="Medium success message with action."
-              icon={<AccountCircleSharp color={tokens.colorPrimary} />}
-              actionText="View"
-              onAction={() => { }}
-            />
+            <html.div style={storyStyles.caption}>Warning</html.div>
+            <AlertMessage variant="warning" size="small" title="" description="Don't forget your Master password. It's the only way to access your vault." icon={<ReportProblemRound width={16} height={16} />} />
           </html.div>
           <html.div style={storyStyles.cell}>
             <html.div style={storyStyles.caption}>Error</html.div>
-            <AlertMessage
-              variant="error"
-              size="medium"
-              title="Error Title"
-              description="Medium error message description."
-              icon={<AccountCircleSharp color={tokens.colorSurfaceError} />}
-            />
+            <AlertMessage variant="error" size="small" title="" description="Small error message." icon={<ErrorFilled width={16} height={16} />} />
           </html.div>
         </html.div>
       </html.div>
 
-      {/* Small Section */}
       <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Small Size</html.div>
+        <html.div style={storyStyles.sectionTitle}>Medium</html.div>
         <html.div style={storyStyles.row}>
           <html.div style={storyStyles.cell}>
             <html.div style={storyStyles.caption}>Success</html.div>
-            <AlertMessage
-              variant="success"
-              size="small"
-              title="Small Success"
-              description="Small alert message (no title visible)."
-              icon={<AccountCircleSharp color={tokens.colorPrimary} />}
-            />
+            <AlertMessage variant="success" size="medium" title="Success" description="Medium success message." icon={<VerifiedUser width={16} height={16} />} />
+          </html.div>
+          <html.div style={storyStyles.cell}>
+            <html.div style={storyStyles.caption}>Warning</html.div>
+            <AlertMessage variant="warning" size="medium" title="Warning" description="Medium warning message." icon={<ReportProblemRound width={16} height={16} />} />
           </html.div>
           <html.div style={storyStyles.cell}>
             <html.div style={storyStyles.caption}>Error with Action</html.div>
-            <AlertMessage
-              variant="error"
-              size="small"
-              title="Small Error"
-              description="Small alert with action."
-              icon={<AccountCircleSharp color={tokens.colorSurfaceError} />}
-              actionText="Undo"
-              onAction={() => { }}
-            />
+            <AlertMessage variant="error" size="medium" title="Error" description="Medium error with action." icon={<ErrorFilled width={16} height={16} />} actionText="Retry" onAction={() => {}} />
           </html.div>
         </html.div>
       </html.div>
     </html.div>
   ),
 };
-

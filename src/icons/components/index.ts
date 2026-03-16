@@ -35,4 +35,5 @@ export { default as VerifiedUser } from "./VerifiedUser";
 export { default as MoreVert } from "./MoreVert";
 export { default as OpenInNew } from "./OpenInNew";
 export { default as ReportProblem } from "./ReportProblem";
+export { default as ReportProblemRound } from "./ReportProblemRound";
 export { default as Share } from "./Share";

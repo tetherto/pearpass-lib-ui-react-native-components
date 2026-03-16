@@ -27,8 +27,8 @@ export const styles = css.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: tokens.spacing24,
-    height: tokens.spacing24,
+    width: tokens.spacing16,
+    height: tokens.spacing16,
     flexShrink: 0,
   },
   copy: {
@@ -52,7 +52,7 @@ export const styles = css.create({
     fontWeight: tokens.weightRegular,
     fontSize: tokens.fontSize12,
     lineHeight: tokens.spacing16,
-    color: tokens.colorTextSecondary,
+    color: tokens.colorTextTertiary,
   },
   link: {
     fontFamily: tokens.fontPrimary,
@@ -79,8 +79,14 @@ export const styles = css.create({
   variantError: {
     backgroundColor: tokens.colorSurfaceDestructive,
   },
+  variantWarning: {
+    // Same elevated background as success
+  },
   iconSuccess: {
     color: tokens.colorPrimary,
+  },
+  iconWarning: {
+    color: tokens.colorSurfaceWarning,
   },
   iconError: {
     color: tokens.colorSurfaceError,
@@ -89,11 +95,13 @@ export const styles = css.create({
 
 export const variantIconStyleMap = {
   success: styles.iconSuccess,
+  warning: styles.iconWarning,
   error: styles.iconError,
 };
 
 export const variantStyleMap = {
   success: styles.variantSuccess,
+  warning: styles.variantWarning,
   error: styles.variantError,
 };
 

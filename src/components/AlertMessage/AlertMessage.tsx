@@ -2,11 +2,23 @@ import React from 'react';
 import { html } from 'react-strict-dom';
 import { Link } from '../Link';
 import { Text } from '../Text';
-import { styles, variantStyleMap, sizeStyleMap, variantIconStyleMap } from './AlertMessage.styles';
+import { useTheme } from '../../theme';
+import { styles, variantStyleMap, sizeStyleMap } from './AlertMessage.styles';
 import { AlertMessageProps } from './types';
+
+const getVariantIconColor = (variant: AlertMessageProps['variant'], colors: ReturnType<typeof useTheme>['theme']['colors']) => {
+  switch (variant) {
+    case 'success': return colors.colorPrimary;
+    case 'warning': return colors.colorSurfaceWarning;
+    case 'error': return colors.colorSurfaceError;
+  }
+};
 
 export const AlertMessage = React.forwardRef<HTMLDivElement, AlertMessageProps>(
   ({ variant, size, icon, title, actionText, onAction, description, testID, actionTestId, ...rest }, ref) => {
+    const { theme } = useTheme();
+    const iconColor = getVariantIconColor(variant, theme.colors);
+
     return (
       <html.div
         {...rest}
@@ -17,10 +29,10 @@ export const AlertMessage = React.forwardRef<HTMLDivElement, AlertMessageProps>(
         aria-live={variant === 'error' ? 'assertive' : 'polite'}
       >
         <html.div style={[styles.messageContainer, size === 'big' && styles.messageContainerBig]}>
-          {icon && (
-            <html.span style={[styles.iconContainer, variantIconStyleMap[variant]]} aria-hidden={true}>
-              {icon}
-            </html.span>
+          {icon && React.isValidElement(icon) && (
+            <html.div style={styles.iconContainer} aria-hidden={true}>
+              {React.cloneElement(icon as React.ReactElement<{ color?: string }>, { color: iconColor })}
+            </html.div>
           )}
           <html.div style={styles.copy}>
             {size !== 'small' && (
