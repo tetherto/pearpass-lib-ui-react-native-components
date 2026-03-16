@@ -6,6 +6,7 @@ import { PasswordIndicator } from '../PasswordIndicator/PasswordIndicator';
 import { useTheme } from '../../theme';
 import { styles } from './PasswordField.styles';
 import { PasswordFieldProps } from './types';
+import { Button } from '../Button'
 
 const EYE_OPEN_LABEL = 'Hide password';
 const EYE_CLOSED_LABEL = 'Show password';
@@ -36,7 +37,8 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
           <html.div style={styles.divider} />
         </>
       )}
-      <html.button
+      <Button
+        variant={"tertiary"}
         onClick={toggleVisibility}
         aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
         style={styles.eyeButton}
@@ -46,7 +48,7 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
           ? <EyeFilled width={16} height={16} color={theme.colors.colorTextPrimary} />
           : <EyeOutlined width={16} height={16} color={theme.colors.colorTextPrimary} />
         }
-      </html.button>
+      </Button>
     </html.div>
   );
 
