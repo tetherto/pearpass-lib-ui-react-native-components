@@ -1,9 +1,7 @@
 import React from 'react';
 import { html } from 'react-strict-dom';
 import { styles } from './Dialog.styles';
-import { Text } from '../Text';
-import { Close } from '../../icons';
-import { Button } from '../Button';
+import { DialogSurface } from './DialogSurface';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 
@@ -39,8 +37,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function Dia
         closeButtonTestID,
         initialFocusRef,
         trapFocus = true,
-        'aria-labelledby': ariaLabelledBy,
-        'aria-describedby': ariaDescribedBy,
         ...rest
     },
     forwardedRef
@@ -54,11 +50,6 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function Dia
             (forwardedRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
         }
     };
-
-    const hasBody = children !== undefined && children !== null && children !== false;
-    const hasFooter = footer !== undefined && footer !== null && footer !== false;
-    const titleId = React.useId();
-    const bodyId = React.useId();
 
     useScrollLock(open);
     useFocusTrap(internalRef as React.RefObject<HTMLElement>, open && trapFocus, { initialFocusRef });
@@ -83,51 +74,31 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(function Dia
         return null;
     }
 
-    const dialogCard = (
-        <html.div
-            {...rest}
-            ref={combinedRef}
-            data-testid={testID}
-            role="dialog"
-            aria-modal={true}
-            aria-labelledby={ariaLabelledBy ?? titleId}
-            aria-describedby={ariaDescribedBy ?? (hasBody ? bodyId : undefined)}
-            tabIndex={-1}
-            style={[styles.root, userStyle]}
-        >
-            <html.div style={styles.header}>
-                <Text id={titleId} style={styles.title}>
-                    {title}
-                </Text>
-                {!hideCloseButton && (
-                    <Button
-                        variant="tertiary"
-                        size="small"
-                        iconBefore={<Close />}
-                        style={styles.closeButton}
-                        onClick={onClose}
-                        aria-label={closeButtonAriaLabel}
-                        data-testid={closeButtonTestID}
-                    />
-                )}
-            </html.div>
-
-            {hasBody && (
-                <html.div id={bodyId} style={styles.body}>
-                    {children}
-                </html.div>
-            )}
-            {hasFooter && <html.div style={styles.footer}>{footer}</html.div>}
-        </html.div>
-    );
-
     return (
         <html.div style={styles.modalLayer}>
             <html.div
                 style={styles.backdrop}
                 onClick={closeOnOutsideClick ? onClose : undefined}
             />
-            <html.div style={styles.dialogPositioner}>{dialogCard}</html.div>
+            <html.div style={styles.dialogPositioner}>
+                <DialogSurface
+                    {...rest}
+                    ref={combinedRef}
+                    role="dialog"
+                    aria-modal={true}
+                    tabIndex={-1}
+                    title={title}
+                    footer={footer}
+                    onClose={onClose}
+                    hideCloseButton={hideCloseButton}
+                    closeButtonAriaLabel={closeButtonAriaLabel}
+                    style={userStyle}
+                    testID={testID}
+                    closeButtonTestID={closeButtonTestID}
+                >
+                    {children}
+                </DialogSurface>
+            </html.div>
         </html.div>
     );
 });
