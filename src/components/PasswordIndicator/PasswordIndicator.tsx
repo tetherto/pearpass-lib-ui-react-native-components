@@ -18,14 +18,14 @@ export const PasswordIndicator = ({ variant, testID }: PasswordIndicatorProps): 
   const label = variantLabelMap[variant];
 
   return (
-    <html.div data-testid={testID} style={[styles.container, variantStyleMap[variant]]}>
-      <html.div style={styles.iconContainer} aria-hidden={true}>
+    <html.span data-testid={testID} style={[styles.container, variantStyleMap[variant]]}>
+      <html.span style={styles.iconContainer} aria-hidden={true}>
         {icon}
-      </html.div>
+      </html.span>
       <html.span style={styles.label}>
         {label}
       </html.span>
-    </html.div>
+    </html.span>
   );
 };
 
