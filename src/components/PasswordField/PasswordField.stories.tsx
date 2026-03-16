@@ -37,11 +37,14 @@ const storyStyles = css.create({
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing24,
+    flex: 1,
+    overflowY: 'scroll',
   },
   section: {
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing16,
+    flexShrink: 0,
   },
   sectionTitle: {
     fontFamily: tokens.fontPrimary,
@@ -56,6 +59,7 @@ const storyStyles = css.create({
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+    gridAutoRows: 'minmax(100px, auto)',
     gap: tokens.spacing20,
   },
   cell: {
