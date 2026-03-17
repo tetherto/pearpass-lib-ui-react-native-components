@@ -3,6 +3,11 @@ import renderer, { act } from 'react-test-renderer';
 import { PasswordField } from './PasswordField';
 
 
+jest.mock('../InputField/AnimatedContainer', () => ({
+  AnimatedContainer: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  NATIVE_ANIMATED: false,
+}));
+
 jest.mock('./PasswordField.styles', () => ({
   styles: {
     rightSlotContainer: {},
@@ -92,6 +97,7 @@ jest.mock('../InputField/InputField.styles', () => ({
     container: {},
     containerFocused: {},
     containerError: {},
+    containerNativeAnimated: {},
     containerGrouped: {},
     innerColumn: {},
     label: {},
