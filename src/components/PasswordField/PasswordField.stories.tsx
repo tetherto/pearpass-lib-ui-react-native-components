@@ -8,6 +8,7 @@ import { Button } from '../Button';
 import { Text } from '../Text';
 import { Title } from '../Title';
 import ReportProblemRound from '../../icons/components/ReportProblemRound';
+import { StoryScrollContainer } from '../../storybook/StoryScrollContainer';
 
 const meta: Meta<typeof PasswordField> = {
   title: 'Components/PasswordField',
@@ -37,8 +38,6 @@ const storyStyles = css.create({
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing24,
-    flex: 1,
-    overflowY: 'scroll',
   },
   section: {
     display: 'flex',
@@ -118,9 +117,10 @@ export const VariantMatrix: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <html.div style={storyStyles.container}>
-      <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Default Variant</html.div>
+    <StoryScrollContainer>
+      <html.div style={storyStyles.container}>
+        <html.div style={storyStyles.section}>
+          <html.div style={storyStyles.sectionTitle}>Default Variant</html.div>
         <html.div style={storyStyles.grid}>
           <html.div style={storyStyles.cell}>
             <html.div style={storyStyles.caption}>Empty / Placeholder</html.div>
@@ -211,9 +211,10 @@ export const VariantMatrix: Story = {
               onChangeText={() => { }}
             />
           </html.div>
+          </html.div>
         </html.div>
       </html.div>
-    </html.div>
+    </StoryScrollContainer>
   ),
 };
 

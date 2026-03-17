@@ -39,16 +39,16 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
       )}
       <Button
         variant={"tertiary"}
+        size="small"
         onClick={toggleVisibility}
         aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
         style={styles.eyeButton}
         data-testid="password-field-eye-button"
-      >
-        {isVisible
-          ? <EyeFilled width={16} height={16} color={theme.colors.colorTextPrimary} />
-          : <EyeOutlined width={16} height={16} color={theme.colors.colorTextPrimary} />
+        iconBefore={isVisible
+          ? <EyeFilled color={theme.colors.colorTextPrimary} />
+          : <EyeOutlined color={theme.colors.colorTextPrimary} />
         }
-      </Button>
+      />
     </html.div>
   );
 

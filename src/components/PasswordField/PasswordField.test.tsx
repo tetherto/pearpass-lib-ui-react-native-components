@@ -49,6 +49,18 @@ jest.mock('../Button/Button.config', () => ({
     tertiary: {},
     destructive: {},
   },
+  variantTextStyleMap: {
+    primary: {},
+    secondary: {},
+    tertiary: {},
+    destructive: {},
+  },
+  variantDisabledTextStyleMap: {
+    primary: {},
+    secondary: {},
+    tertiary: {},
+    destructive: {},
+  },
 }));
 
 jest.mock('../PasswordIndicator/PasswordIndicator.styles', () => ({
