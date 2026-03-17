@@ -7,7 +7,7 @@ import { AlertMessage } from '../AlertMessage';
 import { Button } from '../Button';
 import { Text } from '../Text';
 import { Title } from '../Title';
-import GppMaybe from '../../icons/components/GppMaybe';
+import ReportProblemRound from '../../icons/components/ReportProblemRound';
 
 const meta: Meta<typeof PasswordField> = {
   title: 'Components/PasswordField',
@@ -37,11 +37,14 @@ const storyStyles = css.create({
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing24,
+    flex: 1,
+    overflowY: 'scroll',
   },
   section: {
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing16,
+    flexShrink: 0,
   },
   sectionTitle: {
     fontFamily: tokens.fontPrimary,
@@ -56,6 +59,7 @@ const storyStyles = css.create({
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+    gridAutoRows: 'minmax(100px, auto)',
     gap: tokens.spacing20,
   },
   cell: {
@@ -105,6 +109,17 @@ export const WithPasswordIndicator: Story = {
     value: 'P@ssword123',
     variant: 'default',
     passwordIndicator: 'strong',
+    onChangeText: () => { },
+  },
+};
+
+export const Copyable: Story = {
+  args: {
+    label: 'Password',
+    value: 'super-secret-123',
+    variant: 'default',
+    copyable: true,
+    onCopy: (val: string) => alert(`Copied: ${val}`),
     onChangeText: () => { },
   },
 };
@@ -266,11 +281,11 @@ export const PasswordForm: Story = {
         </html.div>
 
         <AlertMessage
-          variant="success"
+          variant="warning"
           size="small"
           title="Important"
-          description="Don't forget your master password, it's the only way to access your vault, we can't help recover it, back it up securely."
-          icon={<GppMaybe color={tokens.colorSurfaceWarning} />}
+          description="Don't forget your Master password. It's the only way to access your vault. We can't help recover it. Back it up securely."
+          icon={<ReportProblemRound width={16} height={16} />}
         />
 
         <Text variant="caption" style={formStyles.textCenter}>

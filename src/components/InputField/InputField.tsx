@@ -3,6 +3,7 @@ import { html } from 'react-strict-dom';
 import { styles, variantContainerStyleMap } from './InputField.styles';
 import { FieldError } from '../FieldError/FieldError';
 import { Text } from '../Text/Text';
+import { ContentCopy } from '../../icons';
 import { InputFieldProps } from './types';
 
 export const InputField = (props: InputFieldProps): React.ReactElement => {
@@ -18,7 +19,15 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
     isGrouped,
     testID,
     inputRef,
+    copyable = false,
+    onCopy,
   } = props;
+
+  const handleCopy = () => {
+    if (onCopy) {
+      onCopy(value);
+    }
+  };
   const [isFocused, setIsFocused] = React.useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -44,9 +53,20 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
             style={styles.input}
           />
         </html.div>
-        {rightSlot && (
+        {(rightSlot || copyable) && (
           <html.div style={styles.rightSlotContainer}>
             {rightSlot}
+            {copyable && (
+              <html.div
+                onClick={handleCopy}
+                role="button"
+                tabIndex={0}
+                aria-label="Copy to clipboard"
+                style={styles.copyButton}
+              >
+                <ContentCopy />
+              </html.div>
+            )}
           </html.div>
         )}
       </html.div>
