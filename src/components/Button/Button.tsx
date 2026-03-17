@@ -12,6 +12,7 @@ import {
 } from './Button.config';
 import { ButtonSize, ButtonVariant } from './types';
 import { withIconSize } from '../../utils';
+import { ButtonSpinner } from './ButtonSpinner';
 
 type HtmlButtonProps = React.ComponentProps<typeof html.button>;
 
@@ -120,11 +121,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
                 </html.span>
             )}
 
-            {isLoading && (
-                <html.span style={styles.spinnerContainer} aria-hidden={true}>
-                    <html.span style={styles.spinner} />
-                </html.span>
-            )}
+            {isLoading && <ButtonSpinner />}
         </html.button>
     );
 });

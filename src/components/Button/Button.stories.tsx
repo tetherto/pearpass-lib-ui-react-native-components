@@ -38,6 +38,7 @@ const meta = {
             control: 'select',
             options: ['small', 'medium'],
         },
+        isLoading: { control: 'boolean' },
         iconBefore: { control: false },
         iconAfter: { control: false },
     },
