@@ -74,6 +74,7 @@ const storyStyles = css.create({
   infoBoxWrapper: {
     display: 'flex',
     flexDirection: 'column',
+    width: 400,
     height: 200,
     justifyContent: 'flex-start',
   },

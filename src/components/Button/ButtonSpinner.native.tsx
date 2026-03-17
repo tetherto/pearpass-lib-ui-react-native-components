@@ -3,10 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
   withTiming,
   Easing,
 } from 'react-native-reanimated';
+
+interface ButtonSpinnerProps {
+  color?: string;
+}
 
 const nativeStyles = StyleSheet.create({
   container: {
@@ -19,20 +22,18 @@ const nativeStyles = StyleSheet.create({
     height: 16,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: 'currentColor',
     borderTopColor: 'transparent',
   },
 });
 
-export const ButtonSpinner = (): React.ReactElement => {
+export const ButtonSpinner = ({ color = '#FFFFFF' }: ButtonSpinnerProps): React.ReactElement => {
   const rotation = useSharedValue(0);
 
   React.useEffect(() => {
-    rotation.value = withRepeat(
-      withTiming(360, { duration: 600, easing: Easing.linear }),
-      -1,
-      false,
-    );
+    rotation.value = withTiming(360 * 1000, {
+      duration: 600 * 1000,
+      easing: Easing.linear,
+    });
   }, [rotation]);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -41,7 +42,7 @@ export const ButtonSpinner = (): React.ReactElement => {
 
   return (
     <View style={nativeStyles.container} pointerEvents="none">
-      <Animated.View style={[nativeStyles.spinner, animatedStyle]} />
+      <Animated.View style={[nativeStyles.spinner, { borderColor: color }, animatedStyle]} />
     </View>
   );
 };

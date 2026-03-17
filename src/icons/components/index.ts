@@ -15,6 +15,8 @@ export { default as EyeOutlined } from "./EyeOutlined";
 export { default as EyeRound } from "./EyeRound";
 export { default as EyeSharp } from "./EyeSharp";
 export { default as EyeTone } from "./EyeTone";
+export { default as FaceId } from "./FaceId";
+export { default as Fingerprint } from "./Fingerprint";
 export { default as GppBad } from "./GppBad";
 export { default as GppMaybe } from "./GppMaybe";
 export { default as InfoOutlined } from "./InfoOutlined";
