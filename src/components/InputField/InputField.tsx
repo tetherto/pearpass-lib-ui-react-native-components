@@ -18,11 +18,19 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
     isGrouped,
     testID,
     inputRef,
+    onFocus,
+    onBlur,
   } = props;
   const [isFocused, setIsFocused] = React.useState(false);
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+    onFocus?.();
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+    onBlur?.();
+  };
 
   return (
     <html.div style={styles.wrapper} data-testid={testID}>

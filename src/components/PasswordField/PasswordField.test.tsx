@@ -8,6 +8,10 @@ jest.mock('./PasswordField.styles', () => ({
     rightSlotContainer: {},
     divider: {},
     eyeButton: {},
+    inputWrapper: {},
+    infoBox: {},
+    infoBoxIcon: {},
+    infoBoxText: {},
   },
 }));
 
@@ -123,6 +127,15 @@ jest.mock('../FieldError/FieldError', () => ({
 jest.mock('../../icons', () => ({
   EyeFilled: () => <div data-testid="eye-filled" />,
   EyeOutlined: () => <div data-testid="eye-outlined" />,
+  InfoOutlined: (props: Record<string, unknown>) => <div data-testid="info-outlined" {...props} />,
+}));
+
+jest.mock('./InfoBoxAnimatedContainer', () => ({
+  InfoBoxAnimatedContainer: ({ visible, children }: { visible: boolean; children: React.ReactNode }) => (
+    <div data-testid="info-box-animated-container" data-visible={visible}>
+      {children}
+    </div>
+  ),
 }));
 
 describe('PasswordField', () => {
@@ -248,5 +261,78 @@ describe('PasswordField', () => {
     });
 
     expect(input().props.type).toBe('password');
+  });
+
+  it('does not render info box when infoBox prop is not provided', () => {
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <PasswordField
+          label="Password"
+          value=""
+          onChangeText={() => { }}
+        />
+      );
+    });
+
+    expect(() =>
+      component!.root.findByProps({ 'data-testid': 'password-field-info-box' })
+    ).toThrow();
+  });
+
+  it('shows info box on focus and hides on blur when infoBox prop is provided', () => {
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <PasswordField
+          label="Password"
+          value=""
+          onChangeText={() => { }}
+          infoBox="Use a strong password"
+        />
+      );
+    });
+
+    const animatedContainer = () =>
+      component!.root.findByProps({ 'data-testid': 'info-box-animated-container' });
+
+    // Initially hidden
+    expect(animatedContainer().props['data-visible']).toBe(false);
+
+    // Focus input
+    act(() => {
+      component!.root.findByType('input').props.onFocus();
+    });
+
+    expect(animatedContainer().props['data-visible']).toBe(true);
+
+    // Blur input
+    act(() => {
+      component!.root.findByType('input').props.onBlur();
+    });
+
+    expect(animatedContainer().props['data-visible']).toBe(false);
+  });
+
+  it('renders the info box text content', () => {
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <PasswordField
+          label="Password"
+          value=""
+          onChangeText={() => { }}
+          infoBox="Use a strong password"
+        />
+      );
+    });
+
+    const infoBox = component!.root.findByProps({ 'data-testid': 'password-field-info-box' });
+    expect(infoBox).toBeTruthy();
+    const tree = component!.toJSON();
+    expect(JSON.stringify(tree)).toContain('Use a strong password');
   });
 });
