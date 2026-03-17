@@ -72,6 +72,8 @@ const storyStyles = css.create({
     color: tokens.colorTextSecondary,
   },
   infoBoxWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
     height: 200,
     justifyContent: 'flex-start',
   },

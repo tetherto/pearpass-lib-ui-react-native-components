@@ -45,6 +45,7 @@ export const styles = css.create({
     paddingLeft: tokens.spacing12,
     paddingRight: tokens.spacing8,
     marginTop: -9,
+    position: 'relative',
     zIndex: -1,
   },
   infoBoxIcon: {
