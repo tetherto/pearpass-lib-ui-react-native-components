@@ -45,6 +45,3 @@ export { default as Swap } from "./Swap";
 export { default as TrashOutlined } from "./TrashOutlined";
 export { default as UploadFileFilled } from "./UploadFileFilled";
 export { default as VerifiedUser } from "./VerifiedUser";
-export { default as OpenInNew } from "./OpenInNew";
-export { default as ReportProblem } from "./ReportProblem";
-export { default as ReportProblemRound } from "./ReportProblemRound";
