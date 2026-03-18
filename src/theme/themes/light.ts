@@ -27,6 +27,8 @@ export const lightTheme: Theme = {
         colorSurfaceError: '',
         colorSurfaceWarning: '',
         colorFocusRing: '',
+        colorTextTertiary: '',
+        colorLinkText: '',
         backgroundSnackbar: '',
     },
 };

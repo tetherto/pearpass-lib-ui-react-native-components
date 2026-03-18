@@ -23,4 +23,8 @@ export interface InputFieldProps {
   copyable?: boolean;
   /** Called when the copy button is clicked. Receives the current value. */
   onCopy?: (value: string) => void;
+  /** Called when the input gains focus */
+  onFocus?: () => void;
+  /** Called when the input loses focus */
+  onBlur?: () => void;
 }

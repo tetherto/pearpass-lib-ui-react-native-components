@@ -17,4 +17,6 @@ export interface PasswordFieldProps {
   copyable?: boolean;
   /** Called when the copy button is clicked. Receives the current value. */
   onCopy?: (value: string) => void;
+  /** When provided, shows an animated info box below the input on focus */
+  infoBox?: string;
 }

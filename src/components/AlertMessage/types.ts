@@ -1,4 +1,4 @@
-export type AlertVariant = 'success' | 'error';
+export type AlertVariant = 'success' | 'warning' | 'error';
 export type AlertSize = 'small' | 'medium' | 'big';
 
 export interface AlertMessageProps {

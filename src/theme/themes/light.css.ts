@@ -27,6 +27,8 @@ export const lightThemeStyle = css.createTheme(tokens, {
     colorSurfaceError: '',
     colorSurfaceWarning: '',
     colorFocusRing: '',
+    colorTextTertiary: '',
+    colorLinkText: '',
     backgroundSnackbar: '',
     spacing4: '4px',
     spacing6: '6px',
