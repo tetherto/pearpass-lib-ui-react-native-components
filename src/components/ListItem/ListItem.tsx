@@ -59,7 +59,12 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     }
 
     return (
-      <html.div {...rest} ref={ref} data-testid={testID} style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider, variantStyleMap[variant]]}>
+      <html.div
+        {...rest}
+        ref={ref}
+        data-testid={testID}
+        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider, variantStyleMap[variant]]}
+      >
         {selectionMode === 'multi' && (
           <Checkbox checked={isSelected} onChange={onSelect ? () => onSelect() : undefined} />
         )}

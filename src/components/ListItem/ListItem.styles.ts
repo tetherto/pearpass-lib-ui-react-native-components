@@ -120,9 +120,9 @@ export const styles = css.create({
     }
   },
   showDivider: {
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: tokens.colorBorderSecondary
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: tokens.colorBorderSecondary
   },
   variantDefault: {},
   variantDestructive: {
