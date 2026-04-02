@@ -19,6 +19,8 @@ type HtmlButtonProps = React.ComponentProps<typeof html.button>;
 
 type ButtonBaseProps = Omit<HtmlButtonProps, 'children' | 'disabled' | 'type' | 'onClick'> & {
     onClick?: HtmlButtonProps['onClick'];
+    onLongPress?: () => void;
+    delayLongPress?: number;
     variant?: ButtonVariant;
     size?: ButtonSize;
     disabled?: boolean;
