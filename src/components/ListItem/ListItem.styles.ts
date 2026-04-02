@@ -111,6 +111,9 @@ export const styles = css.create({
     paddingBlock: tokens.spacing16,
     paddingInline: tokens.spacing16
   },
+  pressed: {
+    backgroundColor: tokens.colorSurfaceHover
+  },
   selected: {
     backgroundColor: tokens.colorSurfaceHover,
     '@media (hover: hover)': {

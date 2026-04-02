@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './ListItem.styles'
 import { ICON_SIZE, variantStyleMap } from './ListItem.config'
@@ -32,6 +32,8 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, variant = 'default', iconAlign = 'center', selectionMode = 'none', isSelected = false, onSelect, testID, ...rest },
     ref
   ) {
+    const [isPressed, setIsPressed] = useState(false)
+
     const renderSubtitle = () => {
       if (!subtitle) return null
 
@@ -63,7 +65,10 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
         {...rest}
         ref={ref}
         data-testid={testID}
-        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, showDivider && styles.showDivider, variantStyleMap[variant]]}
+        onTouchStart={() => setIsPressed(true)}
+        onTouchEnd={() => setIsPressed(false)}
+        onTouchCancel={() => setIsPressed(false)}
+        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, isPressed && styles.pressed, showDivider && styles.showDivider, variantStyleMap[variant]]}
       >
         {selectionMode === 'multi' && (
           <Checkbox checked={isSelected} onChange={onSelect ? () => onSelect() : undefined} />
