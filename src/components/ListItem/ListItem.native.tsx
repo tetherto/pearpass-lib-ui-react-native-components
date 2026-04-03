@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 
+import { Check } from '../../icons/components/Check.native'
 import { useTheme } from '../../theme/ThemeContext'
 import { withIconSize } from '../../utils'
 import { ICON_SIZE } from './ListItem.config'
@@ -120,7 +121,9 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
               backgroundColor: isSelected ? colors.colorPrimary : 'transparent'
             }
           ]}
-        />
+        >
+          {isSelected && <Check width={14} height={14} fill="white" />}
+        </Pressable>
       )}
 
       {icon && (

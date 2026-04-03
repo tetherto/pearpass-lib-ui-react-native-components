@@ -62,9 +62,9 @@ export const styles = StyleSheet.create({
     gap: rawTokens.spacing8
   },
   checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: rawTokens.radius8,
+    width: 16,
+    height: 16,
+    borderRadius: 4,
     borderWidth: 1.5,
     justifyContent: 'center',
     alignItems: 'center',
