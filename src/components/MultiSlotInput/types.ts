@@ -3,7 +3,9 @@ import React from 'react';
 export interface MultiSlotInputProps {
   label: string;
   values: string[];
-  onChange: (values: string[]) => void;
+  onAdd: () => void;
+  onChangeItem: (index: number, value: string) => void;
+  onRemove: (index: number) => void;
   placeholder?: string;
   /** @deprecated use placeholder */
   placeholderText?: string;

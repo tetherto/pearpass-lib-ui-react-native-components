@@ -15,7 +15,9 @@ const meta: Meta<typeof MultiSlotInput> = {
     maxSlots: { control: { type: 'number', min: 1 } },
     disabled: { control: 'boolean' },
     values: { control: false },
-    onChange: { control: false },
+    onAdd: { control: false },
+    onChangeItem: { control: false },
+    onRemove: { control: false },
   },
 };
 
@@ -24,7 +26,24 @@ type Story = StoryObj<typeof MultiSlotInput>;
 
 const StatefulMultiSlotInput = (args: React.ComponentProps<typeof MultiSlotInput>) => {
   const [values, setValues] = React.useState<string[]>(args.values ?? ['']);
-  return <MultiSlotInput {...args} values={values} onChange={setValues} />;
+
+  const handleAdd = () => setValues((prev) => [...prev, '']);
+  const handleChangeItem = (index: number, val: string) => {
+    setValues((prev) => prev.map((v, i) => (i === index ? val : v)));
+  };
+  const handleRemove = (index: number) => {
+    setValues((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  return (
+    <MultiSlotInput
+      {...args}
+      values={values}
+      onAdd={handleAdd}
+      onChangeItem={handleChangeItem}
+      onRemove={handleRemove}
+    />
+  );
 };
 
 const storyStyles = css.create({
@@ -219,12 +238,14 @@ export const VariantMatrix: Story = {
   },
   render: () => {
     const WebsitesDemo = () => {
-      const [websites, setWebsites] = React.useState<string[]>(['https://mysite.io']);
+      const [values, setValues] = React.useState<string[]>(['https://mysite.io']);
       return (
         <MultiSlotInput
           label="Website"
-          values={websites}
-          onChange={setWebsites}
+          values={values}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="https://example.com"
           addButtonLabel="Add another website"
         />
@@ -232,12 +253,14 @@ export const VariantMatrix: Story = {
     };
 
     const EmailsDemo = () => {
-      const [emails, setEmails] = React.useState<string[]>(['']);
+      const [values, setValues] = React.useState<string[]>(['']);
       return (
         <MultiSlotInput
           label="Email address"
-          values={emails}
-          onChange={setEmails}
+          values={values}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="user@example.com"
           addButtonLabel="Add another email"
         />
@@ -250,7 +273,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="URL"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="https://"
           addButtonLabel="Add another URL"
           errorMessage="At least one URL is invalid."
@@ -264,7 +289,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="Tag"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="My tag"
           addButtonLabel="Add another tag"
           maxSlots={3}
@@ -278,7 +305,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="Website"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="https://example.com"
           addButtonLabel="Add another website"
           disabled
@@ -292,7 +321,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="Website"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="https://example.com"
           addButtonLabel="Add another website"
           leftSlot={<html.span style={storyStyles.slotIcon}>🌐</html.span>}
@@ -306,7 +337,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="Priority email"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="user@example.com"
           addButtonLabel="Add another email"
           rightSlot={(index) => (
@@ -324,7 +357,9 @@ export const VariantMatrix: Story = {
         <MultiSlotInput
           label="Social links"
           values={values}
-          onChange={setValues}
+          onAdd={() => setValues((p) => [...p, ''])}
+          onChangeItem={(i, v) => setValues((p) => p.map((x, idx) => (idx === i ? v : x)))}
+          onRemove={(i) => setValues((p) => p.filter((_, idx) => idx !== i))}
           placeholder="https://"
           addButtonLabel="Add another link"
           leftSlot={<html.span style={storyStyles.slotIcon}>🔗</html.span>}
