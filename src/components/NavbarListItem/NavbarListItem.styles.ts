@@ -7,7 +7,6 @@ export const styles = css.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: tokens.spacing8,
-    marginBlock: 1,
     paddingBlock: tokens.spacing8,
     paddingInline: tokens.spacing8,
     backgroundColor: 'transparent',
