@@ -39,10 +39,10 @@ export const styles = css.create({
     borderRadius: 0,
     paddingBlock: tokens.spacing16,
     paddingInline: tokens.spacing16,
-    backgroundColor: tokens.colorSurfacePrimary,
-    ':active': {
-      backgroundColor: tokens.colorSurfaceHover
-    }
+    backgroundColor: tokens.colorSurfacePrimary
+  },
+  pressed: {
+    backgroundColor: tokens.colorSurfaceHover
   },
   divider: {
     borderStyle: 'solid',

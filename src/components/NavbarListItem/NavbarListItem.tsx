@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './NavbarListItem.styles'
 import { variantStyleMap, ICON_SIZE } from './NavbarListItem.config'
@@ -44,6 +44,7 @@ export const NavbarListItem = React.forwardRef<
   },
   ref
 ) {
+  const [isPressed, setIsPressed] = useState(false)
   const isMobile = platform === 'mobile'
   const isIconOnly = Boolean(icon) && !label && count === undefined
 
@@ -55,11 +56,15 @@ export const NavbarListItem = React.forwardRef<
       data-testid={testID}
       aria-selected={selected}
       onClick={onClick}
+      onTouchStart={() => setIsPressed(true)}
+      onTouchEnd={() => setIsPressed(false)}
+      onTouchCancel={() => setIsPressed(false)}
       style={[
         styles.root,
         isMobile && styles.mobile,
         showDivider && styles.divider,
         selected && styles.selected,
+        isPressed && styles.pressed,
         variantStyleMap[variant],
         isIconOnly && styles.iconOnly(ICON_ONLY_SIZE)
       ]}
