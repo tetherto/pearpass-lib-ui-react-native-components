@@ -1,0 +1,150 @@
+import React, { useState } from 'react'
+import { Pressable, Text, View } from 'react-native'
+
+import { useTheme } from '../../theme/ThemeContext'
+import { withIconSize } from '../../utils'
+import { ICON_SIZE } from './ListItem.config'
+import { styles } from './ListItem.styles'
+import {
+  ListItemIconAlign,
+  ListItemSelectionMode,
+  ListItemSubtitle,
+  ListItemSubtitleLayout,
+  ListItemVariant
+} from './types'
+
+export type ListItemProps = {
+  icon?: React.ReactNode
+  iconSize?: number
+  title: string
+  subtitle?: ListItemSubtitle
+  subtitleLayout?: ListItemSubtitleLayout
+  rightElement?: React.ReactNode
+  selected?: boolean
+  showDivider?: boolean
+  variant?: ListItemVariant
+  iconAlign?: ListItemIconAlign
+  selectionMode?: ListItemSelectionMode
+  isSelected?: boolean
+  onSelect?: () => void
+  onClick?: () => void
+  onLongPress?: () => void
+  delayLongPress?: number
+  testID?: string
+  style?: object | object[]
+}
+
+export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
+  {
+    icon,
+    iconSize = ICON_SIZE,
+    title,
+    subtitle,
+    subtitleLayout = 'horizontal',
+    rightElement,
+    selected = false,
+    showDivider = false,
+    variant = 'default',
+    iconAlign = 'center',
+    selectionMode = 'none',
+    isSelected = false,
+    onSelect,
+    onClick,
+    onLongPress,
+    delayLongPress,
+    testID,
+    style: userStyle
+  },
+  ref
+) {
+  const { theme } = useTheme()
+  const colors = theme.colors
+  const [isPressed, setIsPressed] = useState(false)
+
+  const renderSubtitle = () => {
+    if (!subtitle) return null
+
+    const segmentStyle = [styles.subtitleSegment, { color: colors.colorTextSecondary }]
+
+    if (typeof subtitle === 'string') {
+      return (
+        <Text style={[styles.subtitle, { color: colors.colorTextSecondary }]}>{subtitle}</Text>
+      )
+    }
+
+    if (subtitleLayout === 'vertical') {
+      return (
+        <View style={styles.subtitleDividerContainerVertical}>
+          <Text style={segmentStyle}>{subtitle.primary}</Text>
+          <View
+            style={[styles.dividerLineHorizontal, { backgroundColor: colors.colorBorderSecondary }]}
+          />
+          <Text style={segmentStyle}>{subtitle.secondary}</Text>
+        </View>
+      )
+    }
+
+    return (
+      <View style={styles.subtitleDividerContainer}>
+        <Text style={segmentStyle}>{subtitle.primary}</Text>
+        <View style={[styles.dividerLine, { backgroundColor: colors.colorBorderSecondary }]} />
+        <Text style={segmentStyle}>{subtitle.secondary}</Text>
+      </View>
+    )
+  }
+
+  return (
+    <Pressable
+      ref={ref}
+      testID={testID}
+      onPress={onClick}
+      onLongPress={onLongPress}
+      delayLongPress={delayLongPress}
+      onPressIn={() => setIsPressed(true)}
+      onPressOut={() => setIsPressed(false)}
+      style={[
+        styles.root,
+        showDivider && { borderBottomWidth: 1, borderBottomColor: colors.colorBorderSecondary },
+        (selected || isPressed) && { backgroundColor: colors.colorSurfaceHover },
+        variant === 'destructive' && { backgroundColor: colors.colorSurfaceDestructive },
+        userStyle
+      ]}
+    >
+      {selectionMode === 'multi' && (
+        <Pressable
+          onPress={onSelect}
+          style={[
+            styles.checkbox,
+            {
+              borderColor: isSelected ? colors.colorPrimary : colors.colorBorderSecondary,
+              backgroundColor: isSelected ? colors.colorPrimary : 'transparent'
+            }
+          ]}
+        />
+      )}
+
+      {icon && (
+        <View
+          style={[
+            styles.iconContainer,
+            { width: iconSize, height: iconSize },
+            iconAlign === 'top' && styles.iconAlignTop
+          ]}
+        >
+          {withIconSize(icon, iconSize)}
+        </View>
+      )}
+
+      <View style={styles.content}>
+        <Text style={[styles.title, { color: colors.colorTextPrimary }]} numberOfLines={1}>
+          {title}
+        </Text>
+        {renderSubtitle()}
+      </View>
+
+      {rightElement && <View style={styles.rightContainer}>{rightElement}</View>}
+    </Pressable>
+  )
+})
+
+ListItem.displayName = 'ListItem'
