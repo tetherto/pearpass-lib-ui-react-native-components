@@ -6,7 +6,7 @@ import { PasswordIndicator } from '../PasswordIndicator/PasswordIndicator';
 import { useTheme } from '../../theme';
 import { styles } from './PasswordField.styles';
 import { PasswordFieldProps } from './types';
-import { Button } from '../Button'
+import { Button } from '../Button';
 import { InfoBoxAnimatedContainer } from './InfoBoxAnimatedContainer';
 
 const EYE_OPEN_LABEL = 'Hide password';
@@ -15,17 +15,26 @@ const EYE_CLOSED_LABEL = 'Show password';
 export const PasswordField = (props: PasswordFieldProps): React.ReactElement => {
   const {
     label,
+    name,
     value,
+    placeholder,
     placeholderText,
+    onChange,
     onChangeText,
-    variant = 'default',
+    error,
     errorMessage,
+    variant,
     passwordIndicator,
+    leftSlot,
+    rightSlot: rightSlotProp,
+    disabled,
     isGrouped,
     testID,
     copyable = false,
     onCopy,
     infoBox,
+    onFocus,
+    onBlur,
   } = props;
 
   const { theme } = useTheme();
@@ -34,7 +43,32 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
 
   const toggleVisibility = (): void => setIsVisible((prev) => !prev);
 
-  const rightSlot = (
+  const resolvedError = error ?? errorMessage;
+  const resolvedPlaceholder = placeholder ?? placeholderText;
+
+  const handleChange = onChange ??
+    (onChangeText
+      ? (e: React.ChangeEvent<HTMLInputElement>) => onChangeText(e.target.value)
+      : undefined);
+
+  const eyeButton = (
+    <Button
+      variant="tertiary"
+      size="small"
+      onClick={toggleVisibility}
+      aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
+      style={styles.eyeButton}
+      data-testid="password-field-eye-button"
+      disabled={false}
+      iconBefore={
+        isVisible
+          ? <EyeFilled color={theme.colors.colorTextPrimary} />
+          : <EyeOutlined color={theme.colors.colorTextPrimary} />
+      }
+    />
+  );
+
+  const builtRightSlot = (
     <html.div style={styles.rightSlotContainer}>
       {passwordIndicator && (
         <>
@@ -42,37 +76,30 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
           <html.div style={styles.divider} />
         </>
       )}
-      <Button
-        variant={"tertiary"}
-        size="small"
-        onClick={toggleVisibility}
-        aria-label={isVisible ? EYE_OPEN_LABEL : EYE_CLOSED_LABEL}
-        style={styles.eyeButton}
-        data-testid="password-field-eye-button"
-        iconBefore={isVisible
-          ? <EyeFilled color={theme.colors.colorTextPrimary} />
-          : <EyeOutlined color={theme.colors.colorTextPrimary} />
-        }
-      />
+      {rightSlotProp}
+      {eyeButton}
     </html.div>
   );
 
   const inputField = (
     <InputField
       label={label}
+      name={name}
       value={value}
-      placeholderText={placeholderText}
-      onChangeText={onChangeText}
+      placeholder={resolvedPlaceholder}
+      onChange={handleChange}
+      error={resolvedError}
       variant={variant}
-      errorMessage={errorMessage}
       inputType={isVisible ? 'text' : 'password'}
-      rightSlot={rightSlot}
+      leftSlot={leftSlot}
+      rightSlot={builtRightSlot}
+      disabled={disabled}
       isGrouped={isGrouped}
       testID={testID}
       copyable={copyable}
       onCopy={onCopy}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
+      onFocus={() => { setIsFocused(true); onFocus?.(); }}
+      onBlur={() => { setIsFocused(false); onBlur?.(); }}
     />
   );
 

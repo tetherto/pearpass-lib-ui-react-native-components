@@ -82,6 +82,14 @@ export const styles = css.create({
       color: tokens.colorTextSecondary,
     },
   },
+  leftSlotContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    paddingRight: tokens.spacing6,
+  },
   rightSlotContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -90,6 +98,14 @@ export const styles = css.create({
     flexShrink: 0,
     gap: tokens.spacing4,
   },
+  containerDisabled: {
+    opacity: 0.5,
+    ':hover': {
+      borderColor: tokens.colorBorderPrimary,
+      backgroundColor: tokens.colorSurfacePrimary,
+    },
+  },
+
   copyButton: {
     display: 'flex',
     alignItems: 'center',

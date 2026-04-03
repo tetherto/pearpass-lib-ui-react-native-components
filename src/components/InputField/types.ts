@@ -1,30 +1,33 @@
 import React from 'react';
 
+/** @deprecated Use error prop instead */
 export type InputFieldVariant = 'default' | 'error';
 
 export interface InputFieldProps {
   label: string;
+  name?: string;
   value: string;
-  placeholderText?: string;
-  onChangeText: (value: string) => void;
-  /** When 'error', border turns red */
-  variant?: InputFieldVariant;
-  /** Error message rendered below the component */
-  errorMessage?: string;
-  /** Input type — use 'password' to mask the value */
+  placeholder?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
   inputType?: 'text' | 'password';
-  /** Optional node rendered on the right side inside the container (e.g. eye icon) */
+  leftSlot?: React.ReactNode;
   rightSlot?: React.ReactNode;
-  /** When true, removes external borders and radius for grouping (keeps bottom border) */
+  disabled?: boolean;
+  // todo: what it means add explanation
   isGrouped?: boolean;
   testID?: string;
   inputRef?: React.RefObject<HTMLInputElement | null>;
-  /** When true, shows a copy button in the right slot */
   copyable?: boolean;
-  /** Called when the copy button is clicked. Receives the current value. */
   onCopy?: (value: string) => void;
-  /** Called when the input gains focus */
   onFocus?: () => void;
-  /** Called when the input loses focus */
   onBlur?: () => void;
+  /** @deprecated Use placeholder instead */
+  placeholderText?: string;
+  /** @deprecated Use onChange instead */
+  onChangeText?: (value: string) => void;
+  /** @deprecated Use error instead */
+  errorMessage?: string;
+  /** @deprecated Derived automatically from error prop */
+  variant?: InputFieldVariant;
 }

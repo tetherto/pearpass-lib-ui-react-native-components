@@ -59,6 +59,9 @@ export const styles = css.create({
         height: `${size}px`,
         overflow: 'visible',
     }),
+    textColorRuntime: (color: string) => ({
+        color,
+    }),
     disabled: {
         cursor: 'not-allowed',
         pointerEvents: 'none',

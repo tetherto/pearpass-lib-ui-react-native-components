@@ -24,8 +24,8 @@ const meta: Meta<typeof InputField> = {
     },
     label: { control: 'text' },
     value: { control: 'text' },
-    placeholderText: { control: 'text' },
-    errorMessage: { control: 'text' },
+    placeholder: { control: 'text' },
+    error: { control: 'text' },
     rightSlot: { control: false }
   }
 }
@@ -79,9 +79,8 @@ export const Default: Story = {
   args: {
     label: 'Username',
     value: '',
-    placeholderText: 'Enter username',
-    variant: 'default',
-    onChangeText: () => {}
+    placeholder: 'Enter username',
+    onChange: () => {}
   }
 }
 
@@ -89,8 +88,7 @@ export const WithValue: Story = {
   args: {
     label: 'Username',
     value: 'john_doe',
-    variant: 'default',
-    onChangeText: () => {}
+    onChange: () => {}
   }
 }
 
@@ -98,9 +96,8 @@ export const ErrorState: Story = {
   args: {
     label: 'Email',
     value: 'bad-email',
-    variant: 'error',
-    errorMessage: 'Please enter a valid email address.',
-    onChangeText: () => {}
+    error: 'Please enter a valid email address.',
+    onChange: () => {}
   }
 }
 
@@ -108,10 +105,28 @@ export const WithRightSlot: Story = {
   args: {
     label: 'Account',
     value: '',
-    placeholderText: 'Enter account',
-    variant: 'default',
+    placeholder: 'Enter account',
     rightSlot: <AccountCircleOutlined color={tokens.colorTextPrimary} />,
-    onChangeText: () => {}
+    onChange: () => {}
+  }
+}
+
+export const WithLeftSlot: Story = {
+  args: {
+    label: 'Account',
+    value: '',
+    placeholder: 'Enter account',
+    leftSlot: <AccountCircleOutlined color={tokens.colorTextPrimary} />,
+    onChange: () => {}
+  }
+}
+
+export const Disabled: Story = {
+  args: {
+    label: 'Username',
+    value: 'john_doe',
+    disabled: true,
+    onChange: () => {}
   }
 }
 
@@ -120,8 +135,7 @@ export const PasswordType: Story = {
     label: 'Password',
     value: 'secret123',
     inputType: 'password',
-    variant: 'default',
-    onChangeText: () => {}
+    onChange: () => {}
   }
 }
 
@@ -129,9 +143,8 @@ export const Copyable: Story = {
   args: {
     label: 'Username',
     value: 'john_doe',
-    variant: 'default',
     copyable: true,
-    onChangeText: () => {}
+    onChange: () => {}
   }
 }
 
@@ -152,7 +165,7 @@ export const CopyableVariants: Story = {
               value="super-secret-123"
               copyable
               onCopy={(val: string) => alert(`Copied: ${val}`)}
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -165,7 +178,7 @@ export const CopyableVariants: Story = {
               inputType="password"
               copyable
               rightSlot={<EyeOutlined color={tokens.colorTextPrimary} />}
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
         </html.div>
@@ -188,8 +201,8 @@ export const VariantMatrix: Story = {
             <InputField
               label="Username"
               value=""
-              placeholderText="e.g. janesmith"
-              onChangeText={() => {}}
+              placeholder="e.g. janesmith"
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -197,7 +210,7 @@ export const VariantMatrix: Story = {
             <InputField
               label="Username"
               value="janesmith"
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -206,7 +219,7 @@ export const VariantMatrix: Story = {
               label="Verified account"
               value="harrisaar"
               rightSlot={<VerifiedUser color={tokens.colorPrimary} />}
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -215,7 +228,7 @@ export const VariantMatrix: Story = {
               label="Secret key"
               value="my-secret-key"
               inputType="password"
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
         </html.div>
@@ -231,8 +244,8 @@ export const VariantMatrix: Story = {
             <InputField
               label="Email"
               value="not-an-email"
-              variant="error"
-              onChangeText={() => {}}
+              error=""
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -240,9 +253,8 @@ export const VariantMatrix: Story = {
             <InputField
               label="Email"
               value="not-an-email"
-              variant="error"
-              errorMessage="Must be a valid email address"
-              onChangeText={() => {}}
+              error="Must be a valid email address"
+              onChange={() => {}}
             />
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -250,10 +262,9 @@ export const VariantMatrix: Story = {
             <InputField
               label="Email"
               value="not-an-email"
-              variant="error"
-              errorMessage="This field is required"
+              error="This field is required"
               rightSlot={<DoneAll color={tokens.colorSurfaceError} />}
-              onChangeText={() => {}}
+              onChange={() => {}}
             />
           </html.div>
         </html.div>

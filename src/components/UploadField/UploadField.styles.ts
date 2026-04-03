@@ -22,6 +22,7 @@ export const styles = css.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: tokens.colorBorderPrimary,
+    backgroundColor: tokens.colorSurfacePrimary,
     boxSizing: 'border-box',
     position: 'relative'
   },
@@ -86,6 +87,7 @@ export const styles = css.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: tokens.colorBorderPrimary,
+    backgroundColor: tokens.colorSurfacePrimary,
     boxSizing: 'border-box'
   },
 

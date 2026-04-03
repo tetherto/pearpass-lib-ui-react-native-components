@@ -1,22 +1,30 @@
+import React from 'react';
 import { PasswordIndicatorVariant } from '../PasswordIndicator/types';
 
 export interface PasswordFieldProps {
   label: string;
+  name?: string;
   value: string;
-  placeholderText?: string;
-  onChangeText: (value: string) => void;
-  testID?: string;
-  /** When 'error', border turns red */
-  variant?: 'default' | 'error';
-  /** Error message rendered below the component */
-  errorMessage?: string;
-  /** If defined, renders the PasswordIndicator to the left of the eye icon */
+  placeholder?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
   passwordIndicator?: PasswordIndicatorVariant;
+  leftSlot?: React.ReactNode;
+  rightSlot?: React.ReactNode;
+  disabled?: boolean;
   isGrouped?: boolean;
-  /** When true, shows a copy button in the right slot */
+  testID?: string;
   copyable?: boolean;
-  /** Called when the copy button is clicked. Receives the current value. */
   onCopy?: (value: string) => void;
-  /** When provided, shows an animated info box below the input on focus */
   infoBox?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  /** @deprecated Use placeholder instead */
+  placeholderText?: string;
+  /** @deprecated Use onChange instead */
+  onChangeText?: (value: string) => void;
+  /** @deprecated Use error instead */
+  errorMessage?: string;
+  /** @deprecated Derived automatically from error prop */
+  variant?: 'default' | 'error';
 }

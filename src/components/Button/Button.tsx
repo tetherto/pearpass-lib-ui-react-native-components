@@ -84,6 +84,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
     };
     const iconColor = disabled ? theme.colors.colorTextDisabled : runtimeIconColorMap[variant];
 
+    const runtimeTextColorMap: Record<ButtonVariant, string> = {
+        primary: theme.colors.colorOnPrimary,
+        secondary: theme.colors.colorTextPrimary,
+        tertiary: theme.colors.colorPrimary,
+        destructive: theme.colors.colorTextPrimary,
+    };
+    const textColor = disabled ? theme.colors.colorTextDisabled : runtimeTextColorMap[variant];
+
     const withIconColor = (icon: React.ReactNode) =>
         React.isValidElement<{ color?: string }>(icon) && !icon.props.color
             ? React.cloneElement(icon, { color: iconColor })
@@ -124,7 +132,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
             )}
 
             {hasChildren && (
-                <html.span style={[styles.label, textStyle, loadingContentStyle]}>{children}</html.span>
+                <html.span style={[styles.label, textStyle, styles.textColorRuntime(textColor), loadingContentStyle]}>{children}</html.span>
             )}
 
             {hasiconAfter && !isLoading && (

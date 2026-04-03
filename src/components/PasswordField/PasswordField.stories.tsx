@@ -14,14 +14,11 @@ const meta: Meta<typeof PasswordField> = {
   title: 'Components/PasswordField',
   component: PasswordField,
   argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['default', 'error'],
-    },
     label: { control: 'text' },
     value: { control: 'text' },
-    placeholderText: { control: 'text' },
-    errorMessage: { control: 'text' },
+    placeholder: { control: 'text' },
+    error: { control: 'text' },
+    disabled: { control: 'boolean' },
     passwordIndicator: {
       control: { type: 'select' },
       options: ['vulnerable', 'decent', 'strong', 'match'],
@@ -86,9 +83,8 @@ export const Default: Story = {
   args: {
     label: 'Password',
     value: '',
-    placeholderText: 'Enter password',
-    variant: 'default',
-    onChangeText: () => { },
+    placeholder: 'Enter password',
+    onChange: () => {},
   },
 };
 
@@ -96,8 +92,7 @@ export const WithValue: Story = {
   args: {
     label: 'Password',
     value: 'secret123',
-    variant: 'default',
-    onChangeText: () => { },
+    onChange: () => {},
   },
 };
 
@@ -105,9 +100,17 @@ export const ErrorState: Story = {
   args: {
     label: 'Password',
     value: 'short',
-    variant: 'error',
-    errorMessage: 'Password must be at least 8 characters.',
-    onChangeText: () => { },
+    error: 'Password must be at least 8 characters.',
+    onChange: () => {},
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Password',
+    value: 'secret123',
+    disabled: true,
+    onChange: () => {},
   },
 };
 
@@ -115,10 +118,9 @@ export const WithInfoBox: Story = {
   args: {
     label: 'Password',
     value: '',
-    placeholderText: 'Enter password',
-    variant: 'default',
-    onChangeText: () => { },
-    infoBox: 'Strong passwords are usually at least 8 characters long, hard to guess, use a mix of letters, numbers, and symbols, and aren’t based on personal information.',
+    placeholder: 'Enter password',
+    onChange: () => {},
+    infoBox: 'Strong passwords are usually at least 8 characters long, hard to guess, use a mix of letters, numbers, and symbols, and aren\'t based on personal information.',
   },
   decorators: [
     (Story) => (
@@ -133,9 +135,8 @@ export const WithPasswordIndicator: Story = {
   args: {
     label: 'Password',
     value: 'P@ssword123',
-    variant: 'default',
     passwordIndicator: 'strong',
-    onChangeText: () => { },
+    onChange: () => {},
   },
 };
 
@@ -143,10 +144,19 @@ export const Copyable: Story = {
   args: {
     label: 'Password',
     value: 'super-secret-123',
-    variant: 'default',
     copyable: true,
     onCopy: (val: string) => alert(`Copied: ${val}`),
-    onChangeText: () => { },
+    onChange: () => {},
+  },
+};
+
+export const WithLeftSlot: Story = {
+  args: {
+    label: 'Password',
+    value: '',
+    placeholder: 'Enter password',
+    onChange: () => {},
+    leftSlot: <html.span style={{ fontSize: 14 }}>🔒</html.span>,
   },
 };
 
@@ -158,15 +168,15 @@ export const VariantMatrix: Story = {
     <StoryScrollContainer>
       <html.div style={storyStyles.container}>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Default Variant</html.div>
+          <html.div style={storyStyles.sectionTitle}>Default</html.div>
           <html.div style={storyStyles.grid}>
             <html.div style={storyStyles.cell}>
               <html.div style={storyStyles.caption}>Empty / Placeholder</html.div>
               <PasswordField
                 label="Password"
                 value=""
-                placeholderText="Enter password"
-                onChangeText={() => { }}
+                placeholder="Enter password"
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -174,7 +184,16 @@ export const VariantMatrix: Story = {
               <PasswordField
                 label="Password"
                 value="secret123"
-                onChangeText={() => { }}
+                onChange={() => {}}
+              />
+            </html.div>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Disabled</html.div>
+              <PasswordField
+                label="Password"
+                value="secret123"
+                disabled
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -183,7 +202,7 @@ export const VariantMatrix: Story = {
                 label="Password"
                 value="short"
                 passwordIndicator="vulnerable"
-                onChangeText={() => { }}
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -192,7 +211,7 @@ export const VariantMatrix: Story = {
                 label="Password"
                 value="password"
                 passwordIndicator="decent"
-                onChangeText={() => { }}
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -201,7 +220,7 @@ export const VariantMatrix: Story = {
                 label="Password"
                 value="P@ssword123!"
                 passwordIndicator="strong"
-                onChangeText={() => { }}
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -210,22 +229,22 @@ export const VariantMatrix: Story = {
                 label="Confirm Password"
                 value="secret123"
                 passwordIndicator="match"
-                onChangeText={() => { }}
+                onChange={() => {}}
               />
             </html.div>
           </html.div>
         </html.div>
 
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Error Variant</html.div>
+          <html.div style={storyStyles.sectionTitle}>Error State</html.div>
           <html.div style={storyStyles.grid}>
             <html.div style={storyStyles.cell}>
               <html.div style={storyStyles.caption}>Error without message</html.div>
               <PasswordField
                 label="Password"
                 value="wrong"
-                variant="error"
-                onChangeText={() => { }}
+                error=""
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -233,9 +252,8 @@ export const VariantMatrix: Story = {
               <PasswordField
                 label="Password"
                 value="wrong"
-                variant="error"
-                errorMessage="Invalid credentials"
-                onChangeText={() => { }}
+                error="Invalid credentials"
+                onChange={() => {}}
               />
             </html.div>
             <html.div style={storyStyles.cell}>
@@ -243,10 +261,9 @@ export const VariantMatrix: Story = {
               <PasswordField
                 label="Password"
                 value="short"
-                variant="error"
-                errorMessage="Password is too weak"
+                error="Password is too weak"
                 passwordIndicator="vulnerable"
-                onChangeText={() => { }}
+                onChange={() => {}}
               />
             </html.div>
           </html.div>
@@ -287,7 +304,6 @@ export const PasswordForm: Story = {
   render: () => (
     <html.div style={[storyStyles.container, formStyles.container]}>
       <html.div style={formStyles.flexCol24}>
-
         <html.div style={formStyles.flexCol8}>
           <Title as="h2">Create master password</Title>
           <Text variant="body" as="p">Create the master password</Text>
@@ -298,13 +314,13 @@ export const PasswordForm: Story = {
             label="Password"
             value="P@ssword123!"
             passwordIndicator="strong"
-            onChangeText={() => { }}
+            onChange={() => {}}
           />
           <PasswordField
             label="Repeat password"
             value="P@ssword123!"
             passwordIndicator="match"
-            onChangeText={() => { }}
+            onChange={() => {}}
           />
         </html.div>
 
@@ -323,7 +339,6 @@ export const PasswordForm: Story = {
         <Button variant="primary">
           Continue
         </Button>
-
       </html.div>
     </html.div>
   ),

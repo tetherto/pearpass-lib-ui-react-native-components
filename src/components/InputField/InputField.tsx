@@ -12,13 +12,19 @@ import { AnimatedContainer, NATIVE_ANIMATED } from './AnimatedContainer';
 export const InputField = (props: InputFieldProps): React.ReactElement => {
   const {
     label,
+    name,
     value,
+    placeholder,
     placeholderText,
+    onChange,
     onChangeText,
-    variant = 'default',
+    error,
     errorMessage,
+    variant,
     inputType = 'text',
+    leftSlot,
     rightSlot,
+    disabled = false,
     isGrouped,
     testID,
     inputRef,
@@ -28,13 +34,18 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
     onBlur,
   } = props;
 
+  const resolvedError = error ?? errorMessage;
+  const resolvedVariant = resolvedError ? 'error' : (variant ?? 'default');
+  const resolvedPlaceholder = placeholder ?? placeholderText;
+
+  const internalInputRef = React.useRef<HTMLInputElement | null>(null);
+  const resolvedInputRef = inputRef ?? internalInputRef;
+
   const { theme } = useTheme();
 
-  const handleCopy = () => {
-    if (onCopy) {
-      onCopy(value);
-    }
-  };
+  const handleCopy = () => onCopy?.(value);
+
+  const handleLabelClick = () => resolvedInputRef.current?.focus();
   const [isFocused, setIsFocused] = React.useState(false);
 
   const handleFocus = () => {
@@ -48,28 +59,39 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
 
   return (
     <html.div style={styles.wrapper} data-testid={testID}>
-      <AnimatedContainer isFocused={isFocused} isError={variant === 'error'}>
+      <AnimatedContainer isFocused={isFocused} isError={resolvedVariant === 'error'}>
         <html.div style={[
-          variantContainerStyleMap[variant],
+          variantContainerStyleMap[resolvedVariant],
           isGrouped && styles.containerGrouped,
-          isFocused && variant !== 'error' && styles.containerFocused,
+          isFocused && resolvedVariant !== 'error' && styles.containerFocused,
+          disabled && styles.containerDisabled,
           NATIVE_ANIMATED && styles.containerNativeAnimated,
         ]}>
+          {leftSlot && (
+            <html.div style={styles.leftSlotContainer}>
+              {leftSlot}
+            </html.div>
+          )}
           <html.div style={styles.innerColumn}>
-            <Text variant="label" style={styles.label}>{label}</Text>
+            <Text variant="label" style={styles.label} onClick={handleLabelClick}>{label}</Text>
             <html.input
-              ref={inputRef}
+              ref={resolvedInputRef}
               type={inputType}
+              name={name}
               value={value}
-              placeholder={placeholderText}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) => onChangeText(e.target.value)}
+              placeholder={resolvedPlaceholder}
+              disabled={disabled}
+              onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onChange?.(e);
+                onChangeText?.(e.target.value);
+              }}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              style={styles.input}
+              style={[styles.input, disabled && styles.containerDisabled]}
             />
           </html.div>
           {(rightSlot || copyable) && (
-            <html.div style={styles.rightSlotContainer}>
+            <html.div style={[styles.rightSlotContainer]}>
               {rightSlot}
               {copyable && (
                 <Button
@@ -85,8 +107,8 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
           )}
         </html.div>
       </AnimatedContainer>
-      {errorMessage && (
-        <FieldError>{errorMessage}</FieldError>
+      {resolvedError && (
+        <FieldError>{resolvedError}</FieldError>
       )}
     </html.div>
   );
