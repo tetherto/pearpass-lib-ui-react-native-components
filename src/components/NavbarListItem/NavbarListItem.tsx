@@ -12,6 +12,7 @@ export type NavbarListItemProps = Omit<
   'children' | 'onClick'
 > & {
   icon?: React.ReactNode
+  iconSize?: number
   label?: string
   count?: number
   selected?: boolean
@@ -31,6 +32,7 @@ export const NavbarListItem = React.forwardRef<
 >(function NavbarListItem(
   {
     icon,
+    iconSize = ICON_SIZE,
     label,
     count,
     selected = false,
@@ -71,10 +73,10 @@ export const NavbarListItem = React.forwardRef<
     >
       {icon && (
         <html.span
-          style={[styles.icon, styles.iconSize(ICON_SIZE)]}
+          style={[styles.icon, styles.iconSize(iconSize)]}
           aria-hidden={true}
         >
-          {withIconSize(icon, ICON_SIZE)}
+          {withIconSize(icon, iconSize)}
         </html.span>
       )}
 
