@@ -122,7 +122,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
             }
           ]}
         >
-          {isSelected && <Check width={14} height={14} fill="white" />}
+          {isSelected && <Check width={14} height={14} color="white" />}
         </Pressable>
       )}
 
