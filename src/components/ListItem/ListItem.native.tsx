@@ -4,7 +4,7 @@ import { Pressable, Text, View } from 'react-native'
 import { useTheme } from '../../theme/ThemeContext'
 import { withIconSize } from '../../utils'
 import { ICON_SIZE } from './ListItem.config'
-import { styles } from './ListItem.styles'
+import { styles } from './ListItem.styles.native'
 import {
   ListItemIconAlign,
   ListItemSelectionMode,
