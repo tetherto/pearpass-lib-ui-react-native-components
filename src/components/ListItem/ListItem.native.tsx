@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 
-import { Check } from '../../icons/components/Check.native'
+import Check from '../../icons/components/Check.native'
 import { useTheme } from '../../theme/ThemeContext'
 import { withIconSize } from '../../utils'
 import { ICON_SIZE } from './ListItem.config'
