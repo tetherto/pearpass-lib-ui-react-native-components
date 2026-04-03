@@ -8,6 +8,7 @@ export { default as Add } from "./Add";
 export { default as ArrowBackOutined } from "./ArrowBackOutined";
 export { default as Check } from "./Check";
 export { default as CheckBox } from "./CheckBox";
+export { default as Clipboard } from "./Clipboard";
 export { default as Close } from "./Close";
 export { default as ContentCopy } from "./ContentCopy";
 export { default as CreateNewFolder } from "./CreateNewFolder";
