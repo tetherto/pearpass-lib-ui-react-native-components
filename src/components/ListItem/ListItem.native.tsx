@@ -98,7 +98,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
     <Pressable
       ref={ref}
       testID={testID}
-      onPress={onClick}
+      onPress={selectionMode === 'multi' ? onSelect : onClick}
       onLongPress={onLongPress}
       delayLongPress={delayLongPress}
       onPressIn={() => setIsPressed(true)}
@@ -112,8 +112,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
       ]}
     >
       {selectionMode === 'multi' && (
-        <Pressable
-          onPress={onSelect}
+        <View
           style={[
             styles.checkbox,
             {
@@ -123,7 +122,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
           ]}
         >
           {isSelected && <Check width={14} height={14} color={colors.colorOnPrimary} />}
-        </Pressable>
+        </View>
       )}
 
       {icon && (

@@ -5,7 +5,7 @@ import { useTheme } from '../../theme/ThemeContext'
 import { rawTokens } from '../../theme/tokens.raw'
 import { TextVariant } from './types'
 
-type VariantStyle = Pick<TextStyle, 'fontSize' | 'fontWeight'>
+type VariantStyle = Pick<TextStyle, 'fontSize' | 'fontWeight' | 'lineHeight' | 'letterSpacing'>
 
 const variantStyles: Record<TextVariant, VariantStyle> = {
   label: {
@@ -51,6 +51,7 @@ export const Text = React.forwardRef<RNText, TextProps>(function Text(
         {
           color: theme.colors.colorTextPrimary,
           fontFamily: rawTokens.fontPrimary,
+          letterSpacing: 0,
         },
         variantStyles[variant],
         style,
