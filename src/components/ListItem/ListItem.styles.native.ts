@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    gap: 2,
+    gap: rawTokens.spacing2,
     minWidth: 0
   },
   title: {
@@ -21,11 +21,6 @@ export const styles = StyleSheet.create({
     fontWeight: rawTokens.weightMedium
   },
   subtitle: {
-    fontFamily: rawTokens.fontPrimary,
-    fontSize: rawTokens.fontSize12,
-    fontWeight: rawTokens.weightRegular
-  },
-  subtitleSegment: {
     fontFamily: rawTokens.fontPrimary,
     fontSize: rawTokens.fontSize12,
     fontWeight: rawTokens.weightRegular
@@ -70,6 +65,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexShrink: 0
   },
-  variantDefault: {},
-  variantDestructive: {}
+  showDivider: {
+    borderBottomWidth: 1
+  }
 })

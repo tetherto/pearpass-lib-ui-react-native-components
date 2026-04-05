@@ -5,7 +5,7 @@ import { useTheme } from '../../theme/ThemeContext'
 import { rawTokens } from '../../theme/tokens.raw'
 import { TextVariant } from './types'
 
-type VariantStyle = Pick<TextStyle, 'fontSize' | 'fontWeight' | 'lineHeight' | 'letterSpacing'>
+type VariantStyle = Pick<TextStyle, 'fontSize' | 'fontWeight'>
 
 const variantStyles: Record<TextVariant, VariantStyle> = {
   label: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native'
 
 import Check from '../../icons/components/Check.native'
 import { useTheme } from '../../theme/ThemeContext'
@@ -32,7 +32,7 @@ export type ListItemProps = {
   onLongPress?: () => void
   delayLongPress?: number
   testID?: string
-  style?: object | object[]
+  style?: StyleProp<ViewStyle>
 }
 
 export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
@@ -65,7 +65,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
   const renderSubtitle = () => {
     if (!subtitle) return null
 
-    const segmentStyle = [styles.subtitleSegment, { color: colors.colorTextSecondary }]
+    const segmentStyle = [styles.subtitle, { color: colors.colorTextSecondary }]
 
     if (typeof subtitle === 'string') {
       return (
@@ -105,7 +105,7 @@ export const ListItem = React.forwardRef<View, ListItemProps>(function ListItem(
       onPressOut={() => setIsPressed(false)}
       style={[
         styles.root,
-        showDivider && { borderBottomWidth: 1, borderBottomColor: colors.colorBorderSecondary },
+        showDivider && [styles.showDivider, { borderBottomColor: colors.colorBorderSecondary }],
         (selected || isPressed) && { backgroundColor: colors.colorSurfaceHover },
         variant === 'destructive' && { backgroundColor: colors.colorSurfaceDestructive },
         userStyle
