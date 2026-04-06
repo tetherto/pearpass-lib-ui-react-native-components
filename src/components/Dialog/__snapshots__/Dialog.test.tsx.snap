@@ -39,7 +39,7 @@ exports[`Dialog renders with body and footer 1`] = `
       >
         <span
           className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-          data-element-src="Text/Text.tsx:32"
+          data-element-src="Text/Text.tsx:43"
           data-style-src="react-strict-dom:web/runtime.js"
           id=":r0:"
           ref={null}

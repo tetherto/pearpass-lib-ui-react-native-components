@@ -5,11 +5,10 @@ import { ICON_SIZE, variantStyleMap } from './ListItem.config'
 import { ListItemSubtitle, ListItemSubtitleLayout, ListItemPlatform, ListItemVariant, ListItemIconAlign, ListItemSelectionMode } from './types'
 import { Text } from '../Text'
 import { Checkbox } from '../Checkbox'
+import { Pressable, PressableProps } from '../Pressable'
 import { withIconSize, defaultPlatform } from '../../utils'
 
-type HtmlDivProps = React.ComponentProps<typeof html.div>
-
-export type ListItemProps = Omit<HtmlDivProps, 'children'> & {
+export type ListItemProps = {
   icon?: React.ReactNode
   iconSize?: number
   title: string
@@ -24,15 +23,47 @@ export type ListItemProps = Omit<HtmlDivProps, 'children'> & {
   selectionMode?: ListItemSelectionMode
   isSelected?: boolean
   onSelect?: () => void
+  onClick?: () => void
+  onLongPress?: () => void
+  delayLongPress?: number
   testID?: string
+  style?: PressableProps['style']
 }
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
   function ListItem(
-    { icon, iconSize = ICON_SIZE, title, subtitle, subtitleLayout = 'horizontal', rightElement, platform = defaultPlatform, selected = false, showDivider = false, variant = 'default', iconAlign = 'center', selectionMode = 'none', isSelected = false, onSelect, testID, ...rest },
+    {
+      icon,
+      iconSize = ICON_SIZE,
+      title,
+      subtitle,
+      subtitleLayout = 'horizontal',
+      rightElement,
+      platform = defaultPlatform,
+      selected = false,
+      showDivider = false,
+      variant = 'default',
+      iconAlign = 'center',
+      selectionMode = 'none',
+      isSelected = false,
+      onSelect,
+      onClick,
+      onLongPress,
+      delayLongPress,
+      testID,
+      style: userStyle
+    },
     ref
   ) {
     const [isPressed, setIsPressed] = useState(false)
+
+    const handlePress = () => {
+      if (selectionMode === 'multi') {
+        onSelect?.()
+      } else {
+        onClick?.()
+      }
+    }
 
     const renderSubtitle = () => {
       if (!subtitle) return null
@@ -61,17 +92,18 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     }
 
     return (
-      <html.div
-        {...rest}
+      <Pressable
         ref={ref}
         data-testid={testID}
-        onTouchStart={() => setIsPressed(true)}
-        onTouchEnd={() => setIsPressed(false)}
-        onTouchCancel={() => setIsPressed(false)}
-        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, isPressed && styles.pressed, showDivider && styles.showDivider, variantStyleMap[variant]]}
+        onClick={handlePress}
+        onLongPress={selectionMode !== 'multi' ? onLongPress : undefined}
+        delayLongPress={delayLongPress}
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}
+        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, isPressed && styles.pressed, showDivider && styles.showDivider, variantStyleMap[variant], userStyle]}
       >
         {selectionMode === 'multi' && (
-          <Checkbox checked={isSelected} onChange={onSelect ? () => onSelect() : undefined} />
+          <Checkbox checked={isSelected} onChange={onSelect} />
         )}
 
         {icon && (
@@ -91,7 +123,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
         {rightElement && (
           <html.div style={styles.rightContainer}>{rightElement}</html.div>
         )}
-      </html.div>
+      </Pressable>
     )
   }
 )
