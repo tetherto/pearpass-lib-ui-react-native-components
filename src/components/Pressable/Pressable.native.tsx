@@ -1,5 +1,7 @@
 import React from 'react'
-import { Pressable as RNPressable, StyleProp, View, ViewStyle } from 'react-native'
+import { Pressable as RNPressable, View, ViewStyle } from 'react-native'
+import { css } from 'react-strict-dom'
+import type { StyleXStyles } from '@stylexjs/stylex'
 
 export type PressableProps = {
   onClick?: () => void
@@ -8,13 +10,15 @@ export type PressableProps = {
   onPressIn?: () => void
   onPressOut?: () => void
   children?: React.ReactNode
-  style?: StyleProp<ViewStyle>
+  style?: StyleXStyles
   testID?: string
   'data-testid'?: string
 }
 
 export const Pressable = React.forwardRef<View, PressableProps>(
-  function Pressable({ onClick, onLongPress, delayLongPress, onPressIn, onPressOut, style, testID, children }, ref) {
+  function Pressable({ onClick, onLongPress, delayLongPress, onPressIn, onPressOut, style, testID, 'data-testid': dataTestId, children }, ref) {
+    const styleArray = style ? (Array.isArray(style) ? style : [style]) : []
+    const { style: resolvedStyle } = css.props(...styleArray)
     return (
       <RNPressable
         ref={ref}
@@ -23,8 +27,8 @@ export const Pressable = React.forwardRef<View, PressableProps>(
         delayLongPress={delayLongPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
-        testID={testID}
-        style={style}
+        testID={testID ?? dataTestId}
+        style={resolvedStyle as ViewStyle}
       >
         {children}
       </RNPressable>
