@@ -59,6 +59,8 @@ export const styles = css.create({
     },
     label: {
         lineHeight: 'normal',
+        display: 'flex',
+        alignItems: 'center',
     },
     icon: {
         display: 'flex',

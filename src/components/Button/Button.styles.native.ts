@@ -19,7 +19,6 @@ export const styles = css.create({
         fontSize: tokens.fontSize14,
         fontWeight: tokens.weightMedium,
         gap: tokens.spacing4,
-        lineHeight: 'normal',
     },
     fullWidth: {
         width: '100%',
@@ -43,9 +42,7 @@ export const styles = css.create({
         paddingBlock: tokens.spacing12,
         paddingInline: tokens.spacing12,
     },
-    label: {
-        lineHeight: 'normal',
-    },
+    label: {},
     icon: {
         display: 'flex',
         alignItems: 'center',
