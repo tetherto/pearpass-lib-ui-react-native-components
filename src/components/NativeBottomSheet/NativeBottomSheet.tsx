@@ -4,7 +4,10 @@ export type NativeBottomSheetProps = {
   trigger: React.ReactNode
   children: React.ReactNode
   testID?: string
+  openOnLongPress?: boolean
 }
+
+export const useBottomSheetClose = () => () => {}
 
 export const NativeBottomSheet: React.FC<NativeBottomSheetProps> = () => {
   throw new Error('NativeBottomSheet is not supported on web')
