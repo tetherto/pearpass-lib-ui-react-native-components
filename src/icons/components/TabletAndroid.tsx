@@ -1,12 +1,12 @@
 // This file is auto-generated. Do not edit it.
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgPersonAdd = (props: SVGProps<SVGSVGElement>) => (
+const SvgTabletAndroid = (props: SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" fill="none" viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
-      d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4m-9-2V7H4v3H1v2h3v3h2v-3h3v-2zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4"
+      d="M18 0H6C4.34 0 3 1.34 3 3v18c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3V3c0-1.66-1.34-3-3-3m-4 22h-4v-1h4zm5.25-3H4.75V3h14.5z"
     />
   </svg>
 );
-export default SvgPersonAdd;
+export default SvgTabletAndroid;

@@ -2,12 +2,12 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
-const SvgLaptopWindows = (props: SvgProps) => (
+const SvgLaptopChromebook = (props: SvgProps) => (
   <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
     <Path
       fill="currentColor"
-      d="M20 18.5v-1c1.1 0 1.99-.9 1.99-2l.01-10c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2v1H0v2h24v-2zM4 5.5h16v10H4z"
+      d="M22 18.5v-15H2v15H0v2h24v-2zm-8 0h-4v-1h4zm6-3H4v-10h16z"
     />
   </Svg>
 );
-export default SvgLaptopWindows;
+export default SvgLaptopChromebook;
