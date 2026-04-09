@@ -110,6 +110,7 @@ export { default as StarBorder } from "./StarBorder";
 export { default as StarFilled } from "./StarFilled";
 export { default as StarOutlined } from "./StarOutlined";
 export { default as Swap } from "./Swap";
+export { default as SwapVert } from "./SwapVert";
 export { default as Sync } from "./Sync";
 export { default as SystemSecurityUpdateFilled } from "./SystemSecurityUpdateFilled";
 export { default as Tablet } from "./Tablet";
