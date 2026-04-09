@@ -78,7 +78,11 @@ export const NativeBottomSheet: React.FC<NativeBottomSheetProps> = ({
       : trigger
     : (
       <Pressable onPress={handleOpen}>
-        <View pointerEvents="none">{trigger}</View>
+        {React.isValidElement(trigger)
+          ? React.cloneElement(trigger as React.ReactElement<{ onClick?: () => void }>, {
+              onClick: handleOpen
+            })
+          : trigger}
       </Pressable>
     )
 
