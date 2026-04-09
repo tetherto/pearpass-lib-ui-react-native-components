@@ -7,6 +7,7 @@ export { default as AccountCircleTone } from "./AccountCircleTone";
 export { default as Add } from "./Add";
 export { default as ArrowBackOutined } from "./ArrowBackOutined";
 export { default as AssignmentInd } from "./AssignmentInd";
+export { default as Backspace } from "./Backspace";
 export { default as BugReportFilled } from "./BugReportFilled";
 export { default as CalendarToday } from "./CalendarToday";
 export { default as Check } from "./Check";
