@@ -4,6 +4,8 @@ export type AlertSize = 'small' | 'medium' | 'big';
 export interface AlertMessageProps {
     variant: AlertVariant;
     size: AlertSize;
+    backgroundColor?: string;
+    color?: string;
 
     title: string;
     actionText?: string;

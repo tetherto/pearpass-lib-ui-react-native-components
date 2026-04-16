@@ -20,6 +20,8 @@ const meta: Meta<typeof AlertMessage> = {
     },
     title: { control: 'text' },
     description: { control: 'text' },
+    backgroundColor: { control: 'color' },
+    color: { control: 'color' },
   },
 };
 
