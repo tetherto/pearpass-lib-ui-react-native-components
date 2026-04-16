@@ -5,6 +5,7 @@ import { Text } from '../Text';
 import { useTheme } from '../../theme';
 import { styles, variantStyleMap, sizeStyleMap } from './AlertMessage.styles';
 import { AlertMessageProps, AlertVariant } from './types';
+import InfoFilled from '../../icons/components/InfoFilled';
 import ReportProblemRound from '../../icons/components/ReportProblemRound';
 import Report from '../../icons/components/Report';
 
@@ -12,12 +13,14 @@ const ICON_SIZE_DEFAULT = 16;
 const ICON_SIZE_BIG = 24;
 
 const variantIconMap: Record<AlertVariant, React.ComponentType<{ width: number; height: number; color?: string }>> = {
+  info: InfoFilled,
   warning: ReportProblemRound,
   error: Report,
 };
 
 const getVariantIconColor = (variant: AlertVariant, colors: ReturnType<typeof useTheme>['theme']['colors']) => {
   switch (variant) {
+    case 'info': return colors.colorTextPrimary;
     case 'warning': return colors.colorSurfaceWarning;
     case 'error': return colors.colorSurfaceError;
   }
