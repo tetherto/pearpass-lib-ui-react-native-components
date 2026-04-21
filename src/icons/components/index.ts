@@ -77,6 +77,7 @@ export { default as LockOutlined } from "./LockOutlined";
 export { default as LockPerson } from "./LockPerson";
 export { default as Login } from "./Login";
 export { default as Logout } from "./Logout";
+export { default as MenuOpen } from "./MenuOpen";
 export { default as MoreVert } from "./MoreVert";
 export { default as Note } from "./Note";
 export { default as OpenInNew } from "./OpenInNew";
