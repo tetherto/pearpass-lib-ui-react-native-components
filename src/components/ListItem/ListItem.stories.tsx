@@ -14,7 +14,21 @@ import {
   ErrorFilled
 } from '../../icons'
 
-const INCLUDE_PROPS = ['title', 'subtitle', 'subtitleLayout', 'icon', 'iconSize', 'rightElement', 'selected', 'showDivider', 'variant', 'iconAlign', 'selectionMode', 'isSelected']
+const INCLUDE_PROPS = [
+  'title',
+  'subtitle',
+  'subtitleLayout',
+  'icon',
+  'iconSize',
+  'rightElement',
+  'selected',
+  'showDivider',
+  'variant',
+  'iconAlign',
+  'selectionMode',
+  'isSelected',
+  'selectable'
+]
 
 const meta = {
   title: 'Components/ListItem',
@@ -47,6 +61,7 @@ const meta = {
       options: ['none', 'multi']
     },
     isSelected: { control: 'boolean' },
+    selectable: { control: 'boolean' },
     icon: { control: false },
     rightElement: { control: false }
   }
@@ -155,7 +170,8 @@ const SampleCheckbox = ({ checked = true }: { checked?: boolean }) => (
 export const Playground: Story = {
   args: {
     title: 'My Login Item',
-    subtitle: 'user@example.com'
+    subtitle: 'user@example.com',
+    selectable: true
   },
   render: (args) => (
     <html.div style={storyStyles.container}>

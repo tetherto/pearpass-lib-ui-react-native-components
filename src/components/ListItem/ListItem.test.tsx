@@ -21,6 +21,7 @@ jest.mock('../Pressable', () => ({
 jest.mock('./ListItem.styles', () => ({
   styles: {
     root: {},
+    selectable: {},
     iconContainer: {},
     iconSize: () => ({}),
     content: {},
@@ -35,6 +36,8 @@ jest.mock('./ListItem.styles', () => ({
     mobile: {},
     selected: {},
     showDivider: {},
+    dividerBorderBottomColor: () => ({}),
+    containerFlatBottom: {},
     variantDefault: {},
     variantDestructive: {},
     iconAlignTop: {}

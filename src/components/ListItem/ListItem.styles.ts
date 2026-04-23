@@ -14,6 +14,8 @@ export const styles = css.create({
     transitionProperty: 'background-color, color',
     transitionDuration: '150ms',
     transitionTimingFunction: 'ease',
+  },
+  selectable: {
     '@media (hover: hover)': {
       ':hover': {
         backgroundColor: tokens.colorSurfaceHover
@@ -126,6 +128,13 @@ export const styles = css.create({
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: tokens.colorBorderSecondary
+  },
+  dividerBorderBottomColor: (color: string) => ({
+    borderBottomColor: color
+  }),
+  containerFlatBottom: {
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0
   },
   variantDefault: {},
   variantDestructive: {

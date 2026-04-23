@@ -51,7 +51,7 @@ export const styles = css.create({
     textarea: {
         boxSizing: 'border-box',
         width: '100%',
-        fontSize: tokens.fontSize12,
+        fontSize: tokens.fontSize14,
         fontWeight: tokens.weightRegular,
         fontFamily: tokens.fontPrimary,
         color: tokens.colorTextPrimary,
@@ -62,7 +62,10 @@ export const styles = css.create({
         outlineStyle: 'none',
         minHeight: 100,
         '::placeholder': {
-            color: tokens.colorTextDisabled,
+            color: tokens.colorTextSecondary,
+            fontSize: tokens.fontSize14,
+            fontWeight: tokens.weightMedium,
+            paddingTop: tokens.spacing2,
         },
     },
     textareaDisabled: {

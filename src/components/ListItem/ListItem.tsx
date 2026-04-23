@@ -18,6 +18,7 @@ export type ListItemProps = {
   platform?: ListItemPlatform
   selected?: boolean
   showDivider?: boolean
+  dividerColor?: string
   variant?: ListItemVariant
   iconAlign?: ListItemIconAlign
   selectionMode?: ListItemSelectionMode
@@ -30,6 +31,8 @@ export type ListItemProps = {
   subtitleStyle?: TextProps['style']
   testID?: string
   style?: PressableProps['style']
+  withRoundedBottomBorders?: boolean
+  selectable?: boolean
 }
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
@@ -44,6 +47,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       platform = defaultPlatform,
       selected = false,
       showDivider = false,
+      dividerColor,
       variant = 'default',
       iconAlign = 'center',
       selectionMode = 'none',
@@ -55,7 +59,9 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       titleStyle,
       subtitleStyle,
       testID,
-      style: userStyle
+      style: userStyle,
+      withRoundedBottomBorders = true,
+      selectable = true
     },
     ref
   ) {
@@ -104,7 +110,20 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
         delayLongPress={delayLongPress}
         onPressIn={() => setIsPressed(true)}
         onPressOut={() => setIsPressed(false)}
-        style={[styles.root, platform === 'mobile' && styles.mobile, selected && styles.selected, isPressed && styles.pressed, showDivider && styles.showDivider, variantStyleMap[variant], userStyle]}
+        style={
+          [
+            styles.root,
+            selectable && styles.selectable,
+            platform === 'mobile' && styles.mobile,
+            selected && styles.selected,
+            isPressed && styles.pressed,
+            showDivider && styles.showDivider,
+            variantStyleMap[variant],
+            userStyle,
+            withRoundedBottomBorders === false && styles.containerFlatBottom,
+            dividerColor && styles.dividerBorderBottomColor(dividerColor)
+          ] as PressableProps['style']
+        }
       >
         {selectionMode === 'multi' && (
           <Checkbox checked={isSelected} onChange={onSelect} />
