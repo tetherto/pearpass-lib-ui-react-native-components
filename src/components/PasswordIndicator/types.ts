@@ -3,4 +3,5 @@ export type PasswordIndicatorVariant = 'vulnerable' | 'decent' | 'strong' | 'mat
 export interface PasswordIndicatorProps {
   variant: PasswordIndicatorVariant;
   testID?: string;
+  iconTestID?: string;
 }

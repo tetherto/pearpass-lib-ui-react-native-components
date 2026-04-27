@@ -25,6 +25,8 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
     errorMessage,
     variant,
     passwordIndicator,
+    passwordIndicatorTestID,
+    passwordIndicatorIconTestID,
     leftSlot,
     rightSlot: rightSlotProp,
     disabled,
@@ -73,7 +75,11 @@ export const PasswordField = (props: PasswordFieldProps): React.ReactElement => 
     <html.div style={styles.rightSlotContainer}>
       {passwordIndicator && (
         <>
-          <PasswordIndicator variant={passwordIndicator} />
+          <PasswordIndicator
+            variant={passwordIndicator}
+            testID={passwordIndicatorTestID}
+            iconTestID={passwordIndicatorIconTestID}
+          />
           <html.div style={styles.divider} />
         </>
       )}
