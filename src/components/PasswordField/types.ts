@@ -9,6 +9,8 @@ export interface PasswordFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   passwordIndicator?: PasswordIndicatorVariant;
+  passwordIndicatorTestID?: string;
+  passwordIndicatorIconTestID?: string;
   leftSlot?: React.ReactNode;
   rightSlot?: React.ReactNode;
   disabled?: boolean;

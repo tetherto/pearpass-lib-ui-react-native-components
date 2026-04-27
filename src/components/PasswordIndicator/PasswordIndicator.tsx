@@ -23,7 +23,7 @@ const getVariantColor = (variant: PasswordIndicatorProps['variant'], colors: Ret
   }
 };
 
-export const PasswordIndicator = ({ variant, testID }: PasswordIndicatorProps): React.ReactElement => {
+export const PasswordIndicator = ({ variant, testID, iconTestID }: PasswordIndicatorProps): React.ReactElement => {
   const { theme } = useTheme();
   const color = getVariantColor(variant, theme.colors);
   const Icon = variantIconMap[variant];
@@ -31,7 +31,7 @@ export const PasswordIndicator = ({ variant, testID }: PasswordIndicatorProps): 
 
   return (
     <html.div data-testid={testID} style={styles.container}>
-      <html.div style={styles.iconContainer} aria-hidden={true}>
+      <html.div data-testid={iconTestID} style={styles.iconContainer} aria-hidden={true}>
         <Icon width={12} height={12} color={color} />
       </html.div>
       <html.span style={[styles.label, variantStyleMap[variant]]}>
