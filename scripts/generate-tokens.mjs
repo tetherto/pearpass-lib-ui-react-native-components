@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
 const tokens = JSON.parse(readFileSync(join(root, 'src', 'theme', 'tokens.json'), 'utf8'));
-const { colors, spacing, radius, typography } = tokens;
+const { colors, spacing, radius, shadows = {}, typography } = tokens;
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
@@ -30,6 +30,7 @@ const allDarkEntries = [
     ...Object.entries(colors.dark),
     ...Object.entries(spacing),
     ...Object.entries(radius),
+    ...Object.entries(shadows),
     ...Object.entries(typography),
 ];
 
@@ -37,6 +38,7 @@ const allLightEntries = [
     ...Object.entries(colors.light),
     ...Object.entries(spacing),
     ...Object.entries(radius),
+    ...Object.entries(shadows),
     ...Object.entries(typography),
 ];
 
@@ -55,6 +57,7 @@ export type Tokens = typeof tokens;
 const staticEntries = [
     ...Object.entries(spacing),
     ...Object.entries(radius),
+    ...Object.entries(shadows),
     ...Object.entries(typography),
 ];
 
@@ -116,6 +119,7 @@ const themeRef = ([k]) => `  --${kebab(k)}: var(--${kebab(k)});`;
 const staticEntriesForCss = [
     ...Object.entries(spacing),
     ...Object.entries(radius),
+    ...Object.entries(shadows),
     ...Object.entries(typography),
 ];
 

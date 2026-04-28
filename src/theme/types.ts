@@ -14,10 +14,12 @@ export interface ThemeColors {
     colorTextSearchField: string;
     colorTextSecondary: string;
     colorTextDisabled: string;
+    colorTextDestructive: string;
 
     colorBorderPrimary: string;
     colorBorderSearchField: string;
     colorBorderSecondary: string;
+    colorBorderTertiary: string;
 
     colorSurfaceHover: string;
     colorSurfaceElevatedOnInteraction: string;

@@ -22,9 +22,11 @@
   --color-text-search-field: #67707E;
   --color-text-secondary: #BDC3AC;
   --color-text-disabled: #435123;
+  --color-text-destructive: #D13B3D;
   --color-border-primary: #212814;
   --color-border-search-field: #252937;
   --color-border-secondary: #2C3618;
+  --color-border-tertiary: #3D403F;
   --color-surface-error: #D1383D;
   --color-surface-warning: #D7D245;
   --color-focus-ring: #B0D944;
@@ -44,10 +46,12 @@
   --spacing40: 40px;
   --spacing48: 48px;
   --spacing60: 60px;
+  --radius6: 6px;
   --radius8: 8px;
   --radius16: 16px;
   --radius20: 20px;
   --radius26: 26px;
+  --shadow-menu: 0 185px 52px 0 rgba(8,10,5,0.01), 0 118px 47px 0 rgba(8,10,5,0.06), 0 67px 40px 0 rgba(8,10,5,0.20), 0 30px 30px 0 rgba(8,10,5,0.34), 0 7px 16px 0 rgba(8,10,5,0.39);
   --font-primary: Inter;
   --font-display: Humble Nostalgia;
   --font-size12: 12px;
@@ -79,9 +83,11 @@
   --color-text-search-field: var(--color-text-search-field);
   --color-text-secondary: var(--color-text-secondary);
   --color-text-disabled: var(--color-text-disabled);
+  --color-text-destructive: var(--color-text-destructive);
   --color-border-primary: var(--color-border-primary);
   --color-border-search-field: var(--color-border-search-field);
   --color-border-secondary: var(--color-border-secondary);
+  --color-border-tertiary: var(--color-border-tertiary);
   --color-surface-error: var(--color-surface-error);
   --color-surface-warning: var(--color-surface-warning);
   --color-focus-ring: var(--color-focus-ring);

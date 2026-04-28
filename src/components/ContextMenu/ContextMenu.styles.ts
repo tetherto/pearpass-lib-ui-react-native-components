@@ -40,8 +40,7 @@ export const styles = css.create({
     paddingInline: tokens.spacing4,
     zIndex: 1000,
     boxSizing: 'border-box',
-    boxShadow:
-      '0 185px 52px 0 rgba(8,10,5,0.01), 0 118px 47px 0 rgba(8,10,5,0.06), 0 67px 40px 0 rgba(8,10,5,0.20), 0 30px 30px 0 rgba(8,10,5,0.34), 0 7px 16px 0 rgba(8,10,5,0.39)'
+    boxShadow: tokens.shadowMenu
   },
   menuPosition: (top: number, left: number, width: number) => ({
     top,
