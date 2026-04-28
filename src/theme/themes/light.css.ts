@@ -29,6 +29,7 @@ export const lightThemeStyle = css.createTheme(tokens, {
     colorBorderSearchField: '',
     colorBorderSecondary: '',
     colorBorderTertiary: '',
+    colorScrim: '',
     colorSurfaceError: '',
     colorSurfaceWarning: '',
     colorFocusRing: '',

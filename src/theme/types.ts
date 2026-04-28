@@ -21,6 +21,8 @@ export interface ThemeColors {
     colorBorderSecondary: string;
     colorBorderTertiary: string;
 
+    colorScrim: string;
+
     colorSurfaceHover: string;
     colorSurfaceElevatedOnInteraction: string;
     colorSurfaceDisabled: string;

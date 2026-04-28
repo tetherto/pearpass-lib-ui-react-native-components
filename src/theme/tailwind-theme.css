@@ -27,6 +27,7 @@
   --color-border-search-field: #252937;
   --color-border-secondary: #2C3618;
   --color-border-tertiary: #3D403F;
+  --color-scrim: rgba(8, 10, 5, 0.72);
   --color-surface-error: #D1383D;
   --color-surface-warning: #D7D245;
   --color-focus-ring: #B0D944;
@@ -88,6 +89,7 @@
   --color-border-search-field: var(--color-border-search-field);
   --color-border-secondary: var(--color-border-secondary);
   --color-border-tertiary: var(--color-border-tertiary);
+  --color-scrim: var(--color-scrim);
   --color-surface-error: var(--color-surface-error);
   --color-surface-warning: var(--color-surface-warning);
   --color-focus-ring: var(--color-focus-ring);

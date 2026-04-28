@@ -28,6 +28,7 @@ export const tokens = css.defineVars({
     colorBorderSearchField: '#252937',
     colorBorderSecondary: '#2C3618',
     colorBorderTertiary: '#3D403F',
+    colorScrim: 'rgba(8, 10, 5, 0.72)',
     colorSurfaceError: '#D1383D',
     colorSurfaceWarning: '#D7D245',
     colorFocusRing: '#B0D944',

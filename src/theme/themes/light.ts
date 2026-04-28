@@ -29,6 +29,7 @@ export const lightTheme: Theme = {
         colorBorderSearchField: '',
         colorBorderSecondary: '',
         colorBorderTertiary: '',
+        colorScrim: '',
         colorSurfaceError: '',
         colorSurfaceWarning: '',
         colorFocusRing: '',

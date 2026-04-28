@@ -16,7 +16,7 @@ export const styles = css.create({
     backdrop: {
         position: 'absolute',
         inset: 0,
-        backgroundColor: 'rgba(8, 10, 5, 0.72)',
+        backgroundColor: tokens.colorScrim,
     },
     dialogPositioner: {
         position: 'relative',
