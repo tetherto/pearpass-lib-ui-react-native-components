@@ -32,9 +32,14 @@ export const styles = css.create({
     color: tokens.colorTextSecondary
   },
   rail: {
+    boxSizing: 'border-box',
     display: 'flex',
     width: '44px',
-    padding: '2px',
+    height: '24px',
+    paddingTop: '2px',
+    paddingRight: '2px',
+    paddingBottom: '2px',
+    paddingLeft: '2px',
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderRadius: '60px',
@@ -59,10 +64,10 @@ export const styles = css.create({
     opacity: 0.5
   },
   knob: {
+    boxSizing: 'border-box',
     width: '20px',
     height: '20px',
     flexShrink: 0,
-    aspectRatio: 1,
     borderRadius: '100px',
     backgroundColor: '#ECF1EE',
     transitionProperty: 'transform',
