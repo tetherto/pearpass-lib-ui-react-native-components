@@ -5,7 +5,7 @@ const SvgHourglassBottom = (props: SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" fill="none" viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
-      d="M18 22L17.99 16L14 12L17.99 7.99L18 2H6V8L10 12L6 15.99V22H18ZM8 7.5V4H16V7.5L12 11.5L8 7.5Z"
+      d="m18 22-.01-6L14 12l3.99-4.01L18 2H6v6l4 4-4 3.99V22zM8 7.5V4h8v3.5l-4 4z"
     />
   </svg>
 );
