@@ -74,6 +74,8 @@ export { default as LaptopMac } from "./LaptopMac";
 export { default as LaptopWindows } from "./LaptopWindows";
 export { default as LayerFilled } from "./LayerFilled";
 export { default as Layers } from "./Layers";
+export { default as Link } from "./Link";
+export { default as LinkOff } from "./LinkOff";
 export { default as LockFilled } from "./LockFilled";
 export { default as LockOutlined } from "./LockOutlined";
 export { default as LockPerson } from "./LockPerson";
