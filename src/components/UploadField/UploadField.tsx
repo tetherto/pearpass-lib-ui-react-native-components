@@ -65,7 +65,7 @@ export const UploadField = ({
     onFilesChange(files.filter((_, i) => i !== index))
   }
 
-  const showUploadArea = files.length < maxFiles
+  const showUploadArea = maxFiles === 0 || files.length < maxFiles
   const formatsLabel = buildFormatsLabel(acceptedFormats, formatsPrefix)
 
   return (
