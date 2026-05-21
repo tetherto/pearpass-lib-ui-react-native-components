@@ -281,6 +281,29 @@ describe('UploadField', () => {
     expect(json).not.toContain('icon-upload')
   })
 
+  it('keeps the upload area visible when maxFiles is 0 (unlimited)', () => {
+    const mockFile = {
+      file: {} as File,
+      name: 'doc.pdf',
+      size: 100,
+      type: 'application/pdf'
+    }
+    let component!: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <Controlled
+          maxFiles={0}
+          initialFiles={[mockFile]}
+          testID="upload-field"
+        />
+      )
+    })
+
+    const json = JSON.stringify(component.toJSON())
+    expect(json).toContain('icon-upload')
+  })
+
   it('removes a file when the delete button is clicked', () => {
     const onFilesChange = jest.fn()
     const mockFile = {

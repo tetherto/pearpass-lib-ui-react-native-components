@@ -66,7 +66,7 @@ export const UploadField = ({
 
   const addFiles = React.useCallback(
     (incoming: File[]) => {
-      const slots = maxFiles - files.length
+      const slots = maxFiles === 0 ? incoming.length : maxFiles - files.length
       if (slots <= 0) return
       const toAdd: UploadedFile[] = incoming.slice(0, slots).map((f) => ({
         file: f,
@@ -134,7 +134,7 @@ export const UploadField = ({
     }
   }
 
-  const showUploadArea = files.length < maxFiles
+  const showUploadArea = maxFiles === 0 || files.length < maxFiles
   const formatsLabel = buildFormatsLabel(acceptedFormats, formatsPrefix)
   const acceptAttr = acceptedFormats?.join(',')
 
@@ -177,7 +177,7 @@ export const UploadField = ({
             ref={inputRef}
             type="file"
             accept={acceptAttr}
-            multiple={maxFiles > 1}
+            multiple={maxFiles === 0 || maxFiles > 1}
             tabIndex={-1}
             aria-hidden="true"
             style={{
