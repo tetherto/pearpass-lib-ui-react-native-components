@@ -22,6 +22,7 @@ export { default as CreateNewFolder } from "./CreateNewFolder";
 export { default as CreditCard } from "./CreditCard";
 export { default as DatasetFilled } from "./DatasetFilled";
 export { default as Devices } from "./Devices";
+export { default as DoNotDisturb } from "./DoNotDisturb";
 export { default as DoneAll } from "./DoneAll";
 export { default as Download } from "./Download";
 export { default as DriveFileMove } from "./DriveFileMove";
