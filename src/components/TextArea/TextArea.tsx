@@ -2,6 +2,9 @@ import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './TextArea.styles'
 import { FieldError } from '../FieldError'
+import { Button } from '../Button'
+import { ContentCopy } from '../../icons'
+import { useTheme } from '../../theme'
 
 type HtmlTextareaProps = React.ComponentProps<typeof html.textarea>
 
@@ -11,6 +14,8 @@ export type TextAreaProps = Omit<HtmlTextareaProps, 'onChange' | 'style'> & {
   disabled?: boolean
   onChange?: (value: string) => void
   testID?: string
+  copyable?: boolean
+  onCopy?: (value: string) => void
 }
 
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -23,6 +28,8 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       onFocus,
       onBlur,
       testID,
+      copyable = false,
+      onCopy,
       ...rest
     },
     ref
@@ -30,6 +37,9 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const [isFocused, setIsFocused] = React.useState(false)
     const id = React.useId()
     const errorId = `${id}-error`
+    const { theme } = useTheme()
+
+    const handleCopy = () => onCopy?.((rest.value as string) ?? '')
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(e.target.value)
@@ -76,6 +86,19 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
+          {copyable && (
+            <html.div style={styles.copyButtonContainer}>
+              <Button
+                variant="tertiary"
+                size="small"
+                onClick={handleCopy}
+                aria-label="Copy to clipboard"
+                iconBefore={
+                  <ContentCopy color={theme.colors.colorTextPrimary} />
+                }
+              />
+            </html.div>
+          )}
         </html.div>
 
         {error && <FieldError id={errorId}>{error}</FieldError>}

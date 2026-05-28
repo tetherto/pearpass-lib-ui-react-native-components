@@ -13,7 +13,9 @@ const INCLUDE_PROPS = [
   'rows',
   'maxLength',
   'defaultValue',
+  'copyable',
   'onChange',
+  'onCopy',
   'onFocus',
   'onBlur'
 ]
@@ -29,6 +31,7 @@ const meta = {
   },
   argTypes: {
     onChange: { action: 'changed' },
+    onCopy: { action: 'copied' },
     onFocus: { action: 'focused' },
     onBlur: { action: 'blurred' }
   }
@@ -96,6 +99,79 @@ export const Playground: Story = {
     placeholder: 'Write something…',
     rows: 4
   }
+}
+
+export const Copyable: Story = {
+  decorators: [
+    (Story) => (
+      <html.div style={storyStyles.container}>
+        <Story />
+      </html.div>
+    )
+  ],
+  args: {
+    label: 'Notes',
+    value: 'Some copyable content here.',
+    copyable: true,
+    onChange: () => {}
+  }
+}
+
+export const CopyableVariants: Story = {
+  parameters: {
+    controls: { disable: true }
+  },
+  render: () => (
+    <html.div style={storyStyles.container}>
+      <html.div style={storyStyles.section}>
+        <html.div style={storyStyles.row}>
+          <html.div style={storyStyles.cell}>
+            <html.div style={storyStyles.caption}>default copyable</html.div>
+            <TextArea
+              label="Notes"
+              value="Some copyable content here."
+              copyable
+              onChange={() => {}}
+            />
+          </html.div>
+          <html.div style={storyStyles.cell}>
+            <html.div style={storyStyles.caption}>
+              with custom onCopy handler
+            </html.div>
+            <TextArea
+              label="Notes"
+              value="Custom handler content."
+              copyable
+              onCopy={(val) => alert(`Copied: ${val}`)}
+              onChange={() => {}}
+            />
+          </html.div>
+        </html.div>
+        <html.div style={storyStyles.row}>
+          <html.div style={storyStyles.cell}>
+            <html.div style={storyStyles.caption}>copyable + disabled</html.div>
+            <TextArea
+              label="Notes"
+              value="Cannot edit this."
+              copyable
+              disabled
+              onChange={() => {}}
+            />
+          </html.div>
+          <html.div style={storyStyles.cell}>
+            <html.div style={storyStyles.caption}>copyable + error</html.div>
+            <TextArea
+              label="Notes"
+              value="Some content."
+              copyable
+              error="Something went wrong."
+              onChange={() => {}}
+            />
+          </html.div>
+        </html.div>
+      </html.div>
+    </html.div>
+  )
 }
 
 export const StateMatrix: Story = {

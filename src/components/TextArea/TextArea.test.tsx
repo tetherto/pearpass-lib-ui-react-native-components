@@ -92,7 +92,9 @@ describe('TextArea', () => {
       component = renderer.create(<TextArea label="Label" />)
     })
 
-    const errorSpans = component!.root.findAll((node: renderer.ReactTestInstance) => node.type === 'span')
+    const errorSpans = component!.root.findAll(
+      (node: renderer.ReactTestInstance) => node.type === 'span'
+    )
     expect(errorSpans.length).toBe(0)
   })
 })
