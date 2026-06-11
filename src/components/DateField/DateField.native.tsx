@@ -7,8 +7,10 @@ import { Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 import { Text } from '../Text';
 
+import { Close } from '../../icons';
 import { useTheme } from '../../theme';
 import { rawTokens } from '../../theme/tokens.raw';
+import { Button } from '../Button';
 import { InputField } from '../InputField';
 import { DateFieldProps, DateFieldPickerMode } from './types';
 import { formatDateFieldValue, parseDateFieldValue } from './utils';
@@ -41,6 +43,7 @@ export const DateField = ({
   minimumDate,
   maximumDate,
   locale,
+  clearable = true,
   rightSlot,
   onChangeText,
   disabled = false,
@@ -117,6 +120,25 @@ export const DateField = ({
     setIsOpen((prev) => !prev);
   }, [disabled, handleAndroidChange, maximumDate, minimumDate, onFocus, pickerMode, readOnly, value, valueDate]);
 
+  const handleClear = React.useCallback(() => {
+    onChangeText?.('');
+    onChangeDate?.(null);
+  }, [onChangeDate, onChangeText]);
+
+  const showClear = clearable && Boolean(value) && !disabled;
+
+  const resolvedRightSlot =
+    rightSlot ??
+    (showClear ? (
+      <Button
+        variant="tertiary"
+        size="small"
+        onClick={handleClear}
+        aria-label="Clear date"
+        iconBefore={<Close color={theme.colors.colorTextPrimary} />}
+      />
+    ) : undefined);
+
   return (
     <View style={styles.wrapper}>
       <InputField
@@ -128,6 +150,7 @@ export const DateField = ({
         onFocus={onFocus}
         onBlur={onBlur}
         onChangeText={onChangeText}
+        rightSlot={resolvedRightSlot}
       />
 
       {Platform.OS === 'ios' ? (

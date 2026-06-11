@@ -10,4 +10,9 @@ export interface DateFieldProps extends Omit<InputFieldProps, 'inputType'> {
   minimumDate?: Date;
   maximumDate?: Date;
   locale?: string;
+  /**
+   * When true, a clear button is shown while a value is present, allowing the
+   * selected date to be removed. Defaults to `true`.
+   */
+  clearable?: boolean;
 }
