@@ -89,6 +89,7 @@ export { default as OpenInNew } from "./OpenInNew";
 export { default as PaletteFilled } from "./PaletteFilled";
 export { default as PaletteOutlined } from "./PaletteOutlined";
 export { default as PearpassLogo } from "./PearpassLogo";
+export { default as PeopleAlt } from "./PeopleAlt";
 export { default as PersonAdd } from "./PersonAdd";
 export { default as PersonAddAlt } from "./PersonAddAlt";
 export { default as Phone } from "./Phone";
