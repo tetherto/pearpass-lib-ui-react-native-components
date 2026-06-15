@@ -21,6 +21,7 @@ export interface InputValueProps {
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
+  autoCapitalize?: TextInputProps['autoCapitalize'];
   inputRef: React.RefObject<HTMLInputElement | null>;
   onInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus: () => void;
@@ -50,6 +51,7 @@ export interface InputFieldProps {
   onFocus?: () => void;
   onBlur?: () => void;
   onClick?: () => void;
+  autoCapitalize?: TextInputProps['autoCapitalize'];
   as?: TextInputComponent;
   /** @deprecated Use placeholder instead */
   placeholderText?: string;
