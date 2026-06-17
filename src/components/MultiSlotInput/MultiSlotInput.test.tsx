@@ -5,41 +5,11 @@ import { MultiSlotInput } from './MultiSlotInput';
 jest.mock('./MultiSlotInput.styles', () => ({
   styles: {
     root: {},
+    container: {},
+    containerError: {},
     row: {},
-    inputWrapper: {},
-    removeButton: {},
-    removeButtonDisabled: {},
-    removeIcon: {},
-    addButton: {},
-    addButtonDisabled: {},
-    addButtonLabel: {},
+    ctaSlot: {},
   },
-}));
-
-jest.mock('../InputField/InputField', () => ({
-  InputField: (props: {
-    label: string;
-    value: string;
-    placeholderText?: string;
-    onChangeText: (v: string) => void;
-    variant?: string;
-    testID?: string;
-    rightSlot?: React.ReactNode;
-  }) => (
-    <div
-      data-testid={
-        props.testID ? `${props.testID}-container` : 'mock-input-container'
-      }
-    >
-      <input
-        data-testid={props.testID ?? 'mock-input'}
-        value={props.value}
-        placeholder={props.placeholderText}
-        onChange={(e) => props.onChangeText(e.target.value)}
-      />
-      {props.rightSlot}
-    </div>
-  ),
 }));
 
 jest.mock('../FieldError/FieldError', () => ({
@@ -48,156 +18,98 @@ jest.mock('../FieldError/FieldError', () => ({
   ),
 }));
 
-jest.mock('../Button/Button', () => ({
-  Button: (props: {
-    'aria-label'?: string;
-    onClick?: () => void;
-    'data-testid'?: string;
-  }) => (
-    <button
-      data-testid={
-        props['data-testid'] ??
-        props['aria-label']?.toLowerCase().replace(/\s+/g, '-')
-      }
-      onClick={props.onClick}
-    >
-      Mock Button
-    </button>
-  ),
-}));
+const Slot = (props: { testID?: string; isGrouped?: boolean }) => (
+  <input data-testid={props.testID} data-grouped={String(!!props.isGrouped)} />
+);
 
 describe('MultiSlotInput', () => {
-  it('calls onChange with a new empty slot when add button is clicked', () => {
-    const handleChange = jest.fn();
+  it('renders each child slot', () => {
     let component: renderer.ReactTestRenderer;
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={[]}
-          onChange={handleChange}
-          testID="test"
-        />
+        <MultiSlotInput testID="test">
+          <Slot testID="slot-0" />
+          <Slot testID="slot-1" />
+        </MultiSlotInput>
       );
     });
 
-    act(() => {
-      component!.root
-        .findByProps({ 'data-testid': 'test-add-button' })
-        .props.onClick();
-    });
-
-    expect(handleChange).toHaveBeenCalledWith(['']);
+    expect(
+      component!.root.findByProps({ 'data-testid': 'slot-0' })
+    ).toBeTruthy();
+    expect(
+      component!.root.findByProps({ 'data-testid': 'slot-1' })
+    ).toBeTruthy();
   });
 
-  it('calls onChange with 4 elements when add button is clicked and there are already 3', () => {
-    const handleChange = jest.fn();
+  it('injects isGrouped into each child slot', () => {
     let component: renderer.ReactTestRenderer;
-    const initialValues = ['one', 'two', 'three'];
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={initialValues}
-          onChange={handleChange}
-          testID="test"
-        />
+        <MultiSlotInput testID="test">
+          <Slot testID="slot-0" />
+          <Slot testID="slot-1" />
+        </MultiSlotInput>
       );
     });
 
-    act(() => {
-      component!.root
-        .findByProps({ 'data-testid': 'test-add-button' })
-        .props.onClick();
+    const slots = component!.root.findAllByType(Slot);
+    expect(slots).toHaveLength(2);
+    slots.forEach((slot) => {
+      expect(slot.props.isGrouped).toBe(true);
     });
-
-    expect(handleChange).toHaveBeenCalledWith([...initialValues, '']);
   });
 
-  it('calls onChange with updated value when a slot input changes', () => {
-    const handleChange = jest.fn();
+  it('renders the actions node', () => {
     let component: renderer.ReactTestRenderer;
 
     act(() => {
       component = renderer.create(
         <MultiSlotInput
-          label="test"
-          values={['first', 'second']}
-          onChange={handleChange}
           testID="test"
-        />
+          actions={<button data-testid="add-button">Add another</button>}
+        >
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
-    act(() => {
-      component!.root
-        .findByProps({ 'data-testid': 'test-slot-0' })
-        .props.onChange({ target: { value: 'firstA' } });
-    });
-
-    expect(handleChange).toHaveBeenCalledWith(['firstA', 'second']);
+    expect(
+      component!.root.findByProps({ 'data-testid': 'add-button' })
+    ).toBeTruthy();
   });
 
-  it('calls onChange with the middle element removed when its remove button is clicked', () => {
-    const handleChange = jest.fn();
+  it('does not render the actions slot when no actions are provided', () => {
     let component: renderer.ReactTestRenderer;
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={['one', 'two', 'three']}
-          onChange={handleChange}
-          testID="test"
-        />
-      );
-    });
-
-    act(() => {
-      component!.root
-        .findByProps({ 'data-testid': 'test-remove-button-1' })
-        .props.onClick();
-    });
-
-    expect(handleChange).toHaveBeenCalledWith(['one', 'three']);
-  });
-
-  it('does not render remove button for a single slot, renders it for both when two slots exist', () => {
-    let component: renderer.ReactTestRenderer;
-
-    act(() => {
-      component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={['one']}
-          onChange={() => { }}
-          testID="test"
-        />
+        <MultiSlotInput testID="test">
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
     expect(() =>
-      component!.root.findByProps({ 'data-testid': 'test-remove-button-0' })
+      component!.root.findByProps({ 'data-testid': 'add-button' })
     ).toThrow();
+  });
+
+  it('applies the testID to the root element', () => {
+    let component: renderer.ReactTestRenderer;
 
     act(() => {
-      component.update(
-        <MultiSlotInput
-          label="test"
-          values={['one', 'two']}
-          onChange={() => { }}
-          testID="test"
-        />
+      component = renderer.create(
+        <MultiSlotInput testID="test">
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
     expect(
-      component!.root.findByProps({ 'data-testid': 'test-remove-button-0' })
-    ).toBeTruthy();
-    expect(
-      component!.root.findByProps({ 'data-testid': 'test-remove-button-1' })
+      component!.root.findByProps({ 'data-testid': 'test' })
     ).toBeTruthy();
   });
 
@@ -206,12 +118,9 @@ describe('MultiSlotInput', () => {
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={['']}
-          onChange={() => { }}
-          testID="test"
-        />
+        <MultiSlotInput testID="test">
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
@@ -225,13 +134,9 @@ describe('MultiSlotInput', () => {
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={['']}
-          onChange={() => { }}
-          errorMessage="Something went wrong"
-          testID="test"
-        />
+        <MultiSlotInput testID="test" errorMessage="Something went wrong">
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
@@ -243,32 +148,21 @@ describe('MultiSlotInput', () => {
     expect(errorNode.props.children).toBe('Something went wrong');
   });
 
-  it('hides the add button and renders all slots when maxSlots is reached', () => {
+  it('ignores non-element children without crashing', () => {
     let component: renderer.ReactTestRenderer;
 
     act(() => {
       component = renderer.create(
-        <MultiSlotInput
-          label="test"
-          values={['one', 'two']}
-          maxSlots={2}
-          onChange={() => { }}
-          testID="test"
-        />
+        <MultiSlotInput testID="test">
+          {null}
+          {'plain text'}
+          <Slot testID="slot-0" />
+        </MultiSlotInput>
       );
     });
 
-    // Add button should not exist
-    expect(() =>
-      component!.root.findByProps({ 'data-testid': 'test-add-button' })
-    ).toThrow();
-
-    // Both slot inputs should still be present
     expect(
-      component!.root.findByProps({ 'data-testid': 'test-slot-0' })
-    ).toBeTruthy();
-    expect(
-      component!.root.findByProps({ 'data-testid': 'test-slot-1' })
+      component!.root.findByProps({ 'data-testid': 'slot-0' })
     ).toBeTruthy();
   });
 });

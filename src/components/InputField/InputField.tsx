@@ -54,6 +54,19 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
   const handleLabelClick = () => {
     resolvedInputRef.current?.focus();
   };
+
+  // When readOnly+onClick is set, the outer Pressable owns the tap (caller
+  // navigation must win), so the container should not steal focus. Disabled
+  // fields never focus.
+  const focusOnContainerTap = !disabled && !(readOnly && onClick);
+  const handleContainerClick = focusOnContainerTap ? handleLabelClick : undefined;
+
+  // Slots (copy, clear, show/hide password, etc.) handle their own taps; stop
+  // the click from bubbling to the container so it doesn't also focus the input.
+  const handleSlotClick: NonNullable<React.ComponentProps<typeof html.div>['onClick']> = (e) => {
+    e.stopPropagation();
+  };
+
   const [isFocused, setIsFocused] = React.useState(false);
 
   const handleFocus = () => {
@@ -67,7 +80,9 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
 
   const content = (
     <AnimatedContainer isFocused={isFocused} isError={resolvedVariant === 'error'} isGrouped={isGrouped}>
-      <html.div style={[
+      <html.div
+        onClick={handleContainerClick}
+        style={[
         variantContainerStyleMap[resolvedVariant],
         isGrouped && styles.containerGrouped,
         isFocused && resolvedVariant !== 'error' && styles.containerFocused,
@@ -75,7 +90,7 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
         NATIVE_ANIMATED && styles.containerNativeAnimated,
       ]}>
         {leftSlot && (
-          <html.div style={styles.leftSlotContainer}>
+          <html.div style={styles.leftSlotContainer} onClick={handleSlotClick}>
             {leftSlot}
           </html.div>
         )}
@@ -101,7 +116,7 @@ export const InputField = (props: InputFieldProps): React.ReactElement => {
           />
         </html.div>
         {(rightSlot || copyable) && (
-          <html.div style={[styles.rightSlotContainer]}>
+          <html.div style={[styles.rightSlotContainer]} onClick={handleSlotClick}>
             {rightSlot}
             {copyable && (
               <Button
