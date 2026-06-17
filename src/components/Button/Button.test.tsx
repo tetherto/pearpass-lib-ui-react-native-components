@@ -17,6 +17,7 @@ jest.mock('./Button.styles', () => ({
         label: {},
         icon: {},
         iconSize: () => ({}),
+        textColorRuntime: () => ({}),
         disabled: {},
         loading: {},
         loadingContent: {},

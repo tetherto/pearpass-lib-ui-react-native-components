@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContextMenu.native renders trigger correctly 1`] = `
+exports[`Dropdown.native renders trigger correctly 1`] = `
 <View>
   <View
     accessibilityState={
@@ -34,14 +34,14 @@ exports[`ContextMenu.native renders trigger correctly 1`] = `
     onStartShouldSetResponder={[Function]}
   >
     <Text>
-      Open
+      Select
     </Text>
   </View>
   <View
-    testID="native-sheet-content"
+    testID="bottom-sheet-scroll-view"
   >
     <Text>
-      Menu content
+      Option 1
     </Text>
   </View>
 </View>

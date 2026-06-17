@@ -3,7 +3,7 @@
 exports[`Radio renders all options and matches snapshot 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Radio/Radio.tsx:23"
+  data-element-src="Radio/Radio.tsx:25"
   data-style-src="react-strict-dom:web/runtime.js"
   role="radiogroup"
   style={{}}
@@ -11,7 +11,7 @@ exports[`Radio renders all options and matches snapshot 1`] = `
   <div
     aria-checked={true}
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Radio/Radio.tsx:30"
+    data-element-src="Radio/Radio.tsx:36"
     data-style-src="react-strict-dom:web/runtime.js"
     onClick={[Function]}
     role="radio"
@@ -21,26 +21,26 @@ exports[`Radio renders all options and matches snapshot 1`] = `
     <div
       aria-hidden={true}
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="Radio/Radio.tsx:43"
+      data-element-src="Radio/Radio.tsx:50"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <div
         className="margin-x1ghz6dp padding-x1717udv"
-        data-element-src="Radio/Radio.tsx:51"
+        data-element-src="Radio/Radio.tsx:58"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       />
     </div>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="Radio/Radio.tsx:55"
+      data-element-src="Radio/Radio.tsx:62"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <span
         className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-        data-element-src="Radio/Radio.tsx:57"
+        data-element-src="Radio/Radio.tsx:64"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >
@@ -48,7 +48,7 @@ exports[`Radio renders all options and matches snapshot 1`] = `
       </span>
       <span
         className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-        data-element-src="Radio/Radio.tsx:60"
+        data-element-src="Radio/Radio.tsx:67"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >
@@ -59,7 +59,7 @@ exports[`Radio renders all options and matches snapshot 1`] = `
   <div
     aria-checked={false}
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Radio/Radio.tsx:30"
+    data-element-src="Radio/Radio.tsx:36"
     data-style-src="react-strict-dom:web/runtime.js"
     onClick={[Function]}
     role="radio"
@@ -69,19 +69,19 @@ exports[`Radio renders all options and matches snapshot 1`] = `
     <div
       aria-hidden={true}
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="Radio/Radio.tsx:43"
+      data-element-src="Radio/Radio.tsx:50"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     />
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="Radio/Radio.tsx:55"
+      data-element-src="Radio/Radio.tsx:62"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <span
         className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-        data-element-src="Radio/Radio.tsx:57"
+        data-element-src="Radio/Radio.tsx:64"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >

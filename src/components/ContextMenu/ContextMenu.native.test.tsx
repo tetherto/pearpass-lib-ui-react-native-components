@@ -1,27 +1,33 @@
 import React from 'react'
 import renderer, { act } from 'react-test-renderer'
-import { View, Text, Pressable } from 'react-native'
+import { Text } from 'react-native'
 import { ContextMenu } from './ContextMenu.native'
 
-jest.mock('@gorhom/bottom-sheet', () => ({
-  __esModule: true,
-  BottomSheetView: ({ children }: { children: React.ReactNode }) => (
-    <View testID="bottom-sheet-view">{children}</View>
-  ),
-}))
+jest.mock('@gorhom/bottom-sheet', () => {
+  const { View } = jest.requireActual('react-native')
+  return {
+    __esModule: true,
+    BottomSheetView: ({ children }: { children: React.ReactNode }) => (
+      <View testID="bottom-sheet-view">{children}</View>
+    ),
+  }
+})
 
-jest.mock('../NativeBottomSheet', () => ({
-  NativeBottomSheet: ({ trigger, children, testID }: {
-    trigger: React.ReactNode
-    children: React.ReactNode
-    testID?: string
-  }) => (
-    <View testID={testID}>
-      <Pressable>{trigger}</Pressable>
-      {children}
-    </View>
-  ),
-}))
+jest.mock('../NativeBottomSheet', () => {
+  const { View, Pressable } = jest.requireActual('react-native')
+  return {
+    NativeBottomSheet: ({ trigger, children, testID }: {
+      trigger: React.ReactNode
+      children: React.ReactNode
+      testID?: string
+    }) => (
+      <View testID={testID}>
+        <Pressable>{trigger}</Pressable>
+        <View testID="native-sheet-content">{children}</View>
+      </View>
+    ),
+  }
+})
 
 describe('ContextMenu.native', () => {
   it('renders trigger correctly', () => {
@@ -52,10 +58,10 @@ describe('ContextMenu.native', () => {
     })
 
     const root = component!.root
-    const bottomSheetView = root.findByProps({ testID: 'bottom-sheet-view' })
+    const wrapper = root.findByProps({ testID: 'native-sheet-content' })
 
-    expect(bottomSheetView).toBeDefined()
-    expect(bottomSheetView.children.length).toBe(3)
+    expect(wrapper).toBeDefined()
+    expect(wrapper.findAllByType(Text).length).toBe(3)
   })
 
   it('renders with testID', () => {

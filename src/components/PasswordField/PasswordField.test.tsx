@@ -31,6 +31,7 @@ jest.mock('../Button/Button.styles', () => ({
     label: {},
     icon: {},
     iconSize: () => ({}),
+    textColorRuntime: () => ({}),
     disabled: {},
     loading: {},
     loadingContent: {},
@@ -133,7 +134,7 @@ jest.mock('../FieldError/FieldError', () => ({
 jest.mock('../../icons', () => ({
   EyeFilled: () => <div data-testid="eye-filled" />,
   EyeOutlined: () => <div data-testid="eye-outlined" />,
-  InfoOutlined: (props: Record<string, unknown>) => <div data-testid="info-outlined" {...props} />,
+  InfoFilled: (props: Record<string, unknown>) => <div data-testid="info-filled" {...props} />,
 }));
 
 jest.mock('./InfoBoxAnimatedContainer', () => ({

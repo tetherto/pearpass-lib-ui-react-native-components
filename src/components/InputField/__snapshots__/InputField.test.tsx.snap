@@ -3,20 +3,21 @@
 exports[`InputField renders correctly with default props 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="InputField/InputField.tsx:120"
+  data-element-src="InputField/InputField.tsx:137"
   data-style-src="react-strict-dom:web/runtime.js"
   data-testid="email-input"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="InputField/InputField.tsx:69"
+    data-element-src="InputField/InputField.tsx:83"
     data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
     style={{}}
   >
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="InputField/InputField.tsx:81"
+      data-element-src="InputField/InputField.tsx:97"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -58,20 +59,21 @@ exports[`InputField renders correctly with default props 1`] = `
 exports[`InputField renders correctly with error variant, right slot and error message 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="InputField/InputField.tsx:120"
+  data-element-src="InputField/InputField.tsx:137"
   data-style-src="react-strict-dom:web/runtime.js"
   data-testid="username-input"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="InputField/InputField.tsx:69"
+    data-element-src="InputField/InputField.tsx:83"
     data-style-src="react-strict-dom:web/runtime.js"
+    onClick={[Function]}
     style={{}}
   >
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="InputField/InputField.tsx:81"
+      data-element-src="InputField/InputField.tsx:97"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -108,8 +110,9 @@ exports[`InputField renders correctly with error variant, right slot and error m
     </div>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="InputField/InputField.tsx:102"
+      data-element-src="InputField/InputField.tsx:119"
       data-style-src="react-strict-dom:web/runtime.js"
+      onClick={[Function]}
       style={{}}
     >
       <span>

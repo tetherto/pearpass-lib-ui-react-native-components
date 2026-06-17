@@ -15,13 +15,13 @@ exports[`Combobox renders trigger correctly 1`] = `
       <span />
       <div
         className="margin-x1ghz6dp padding-x1717udv"
-        data-element-src="Combobox/Combobox.tsx:60"
+        data-element-src="Combobox/Combobox.tsx:62"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >
         <span
           className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-          data-element-src="Combobox/Combobox.tsx:80"
+          data-element-src="Combobox/Combobox.tsx:82"
           data-style-src="react-strict-dom:web/runtime.js"
           style={{}}
         />

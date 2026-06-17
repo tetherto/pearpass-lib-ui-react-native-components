@@ -1,27 +1,33 @@
 import React from 'react'
 import renderer, { act } from 'react-test-renderer'
-import { View, Text, Pressable } from 'react-native'
+import { Text } from 'react-native'
 import { Dropdown } from './Dropdown.native'
 
-jest.mock('@gorhom/bottom-sheet', () => ({
-  __esModule: true,
-  BottomSheetScrollView: ({ children }: { children: React.ReactNode }) => (
-    <View testID="bottom-sheet-scroll-view">{children}</View>
-  ),
-}))
+jest.mock('@gorhom/bottom-sheet', () => {
+  const { View } = jest.requireActual('react-native')
+  return {
+    __esModule: true,
+    BottomSheetScrollView: ({ children }: { children: React.ReactNode }) => (
+      <View testID="bottom-sheet-scroll-view">{children}</View>
+    ),
+  }
+})
 
-jest.mock('../NativeBottomSheet', () => ({
-  NativeBottomSheet: ({ trigger, children, testID }: {
-    trigger: React.ReactNode
-    children: React.ReactNode
-    testID?: string
-  }) => (
-    <View testID={testID}>
-      <Pressable>{trigger}</Pressable>
-      {children}
-    </View>
-  ),
-}))
+jest.mock('../NativeBottomSheet', () => {
+  const { View, Pressable } = jest.requireActual('react-native')
+  return {
+    NativeBottomSheet: ({ trigger, children, testID }: {
+      trigger: React.ReactNode
+      children: React.ReactNode
+      testID?: string
+    }) => (
+      <View testID={testID}>
+        <Pressable>{trigger}</Pressable>
+        {children}
+      </View>
+    ),
+  }
+})
 
 describe('Dropdown.native', () => {
   it('renders trigger correctly', () => {
@@ -55,7 +61,7 @@ describe('Dropdown.native', () => {
     const scrollView = root.findByProps({ testID: 'bottom-sheet-scroll-view' })
 
     expect(scrollView).toBeDefined()
-    expect(scrollView.children.length).toBe(3)
+    expect(scrollView.findAllByType(Text).length).toBe(3)
   })
 
   it('renders with testID', () => {

@@ -3,7 +3,7 @@
 exports[`Checkbox renders checked state 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Checkbox/Checkbox.tsx:44"
+  data-element-src="Checkbox/Checkbox.tsx:49"
   data-style-src="react-strict-dom:web/runtime.js"
   ref={null}
   style={{}}
@@ -12,7 +12,7 @@ exports[`Checkbox renders checked state 1`] = `
     aria-checked={true}
     aria-label="Accept terms"
     className="borderStyle-x1y0btm7 margin-x1ghz6dp padding-x1717udv borderWidth-xmkeg23"
-    data-element-src="Checkbox/Checkbox.tsx:45"
+    data-element-src="Checkbox/Checkbox.tsx:50"
     data-style-src="react-strict-dom:web/runtime.js,web/runtime.js"
     disabled={false}
     onClick={[Function]}
@@ -23,21 +23,21 @@ exports[`Checkbox renders checked state 1`] = `
     <span
       aria-hidden={true}
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Checkbox/Checkbox.tsx:55"
+      data-element-src="Checkbox/Checkbox.tsx:60"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     />
   </button>
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Checkbox/Checkbox.tsx:62"
+    data-element-src="Checkbox/Checkbox.tsx:67"
     data-style-src="react-strict-dom:web/runtime.js"
     onClick={[Function]}
     style={{}}
   >
     <span
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Text/Text.tsx:43"
+      data-element-src="Text/Text.tsx:36"
       data-style-src="react-strict-dom:web/runtime.js"
       ref={null}
       style={{}}
@@ -51,7 +51,7 @@ exports[`Checkbox renders checked state 1`] = `
 exports[`Checkbox renders disabled state 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Checkbox/Checkbox.tsx:44"
+  data-element-src="Checkbox/Checkbox.tsx:49"
   data-style-src="react-strict-dom:web/runtime.js"
   ref={null}
   style={{}}
@@ -61,7 +61,7 @@ exports[`Checkbox renders disabled state 1`] = `
     aria-disabled={true}
     aria-label="Accept terms"
     className="borderStyle-x1y0btm7 margin-x1ghz6dp padding-x1717udv borderWidth-xmkeg23"
-    data-element-src="Checkbox/Checkbox.tsx:45"
+    data-element-src="Checkbox/Checkbox.tsx:50"
     data-style-src="react-strict-dom:web/runtime.js,web/runtime.js"
     disabled={true}
     role="checkbox"
@@ -71,20 +71,20 @@ exports[`Checkbox renders disabled state 1`] = `
     <span
       aria-hidden={true}
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Checkbox/Checkbox.tsx:55"
+      data-element-src="Checkbox/Checkbox.tsx:60"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     />
   </button>
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Checkbox/Checkbox.tsx:62"
+    data-element-src="Checkbox/Checkbox.tsx:67"
     data-style-src="react-strict-dom:web/runtime.js"
     style={{}}
   >
     <span
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Text/Text.tsx:43"
+      data-element-src="Text/Text.tsx:36"
       data-style-src="react-strict-dom:web/runtime.js"
       ref={null}
       style={{}}
@@ -98,7 +98,7 @@ exports[`Checkbox renders disabled state 1`] = `
 exports[`Checkbox renders unchecked state 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Checkbox/Checkbox.tsx:44"
+  data-element-src="Checkbox/Checkbox.tsx:49"
   data-style-src="react-strict-dom:web/runtime.js"
   ref={null}
   style={{}}
@@ -107,7 +107,7 @@ exports[`Checkbox renders unchecked state 1`] = `
     aria-checked={false}
     aria-label="Accept terms"
     className="borderStyle-x1y0btm7 margin-x1ghz6dp padding-x1717udv borderWidth-xmkeg23"
-    data-element-src="Checkbox/Checkbox.tsx:45"
+    data-element-src="Checkbox/Checkbox.tsx:50"
     data-style-src="react-strict-dom:web/runtime.js,web/runtime.js"
     disabled={false}
     onClick={[Function]}
@@ -117,14 +117,14 @@ exports[`Checkbox renders unchecked state 1`] = `
   />
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Checkbox/Checkbox.tsx:62"
+    data-element-src="Checkbox/Checkbox.tsx:67"
     data-style-src="react-strict-dom:web/runtime.js"
     onClick={[Function]}
     style={{}}
   >
     <span
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Text/Text.tsx:43"
+      data-element-src="Text/Text.tsx:36"
       data-style-src="react-strict-dom:web/runtime.js"
       ref={null}
       style={{}}
@@ -138,7 +138,7 @@ exports[`Checkbox renders unchecked state 1`] = `
 exports[`Checkbox renders with label and description 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Checkbox/Checkbox.tsx:44"
+  data-element-src="Checkbox/Checkbox.tsx:49"
   data-style-src="react-strict-dom:web/runtime.js"
   ref={null}
   style={{}}
@@ -147,7 +147,7 @@ exports[`Checkbox renders with label and description 1`] = `
     aria-checked={false}
     aria-label="Accept terms"
     className="borderStyle-x1y0btm7 margin-x1ghz6dp padding-x1717udv borderWidth-xmkeg23"
-    data-element-src="Checkbox/Checkbox.tsx:45"
+    data-element-src="Checkbox/Checkbox.tsx:50"
     data-style-src="react-strict-dom:web/runtime.js,web/runtime.js"
     disabled={false}
     onClick={[Function]}
@@ -157,14 +157,14 @@ exports[`Checkbox renders with label and description 1`] = `
   />
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="Checkbox/Checkbox.tsx:62"
+    data-element-src="Checkbox/Checkbox.tsx:67"
     data-style-src="react-strict-dom:web/runtime.js"
     onClick={[Function]}
     style={{}}
   >
     <span
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Text/Text.tsx:43"
+      data-element-src="Text/Text.tsx:36"
       data-style-src="react-strict-dom:web/runtime.js"
       ref={null}
       style={{}}
@@ -173,7 +173,7 @@ exports[`Checkbox renders with label and description 1`] = `
     </span>
     <span
       className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
-      data-element-src="Text/Text.tsx:43"
+      data-element-src="Text/Text.tsx:36"
       data-style-src="react-strict-dom:web/runtime.js"
       ref={null}
       style={{}}
@@ -187,7 +187,7 @@ exports[`Checkbox renders with label and description 1`] = `
 exports[`Checkbox renders without label or description 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="Checkbox/Checkbox.tsx:44"
+  data-element-src="Checkbox/Checkbox.tsx:49"
   data-style-src="react-strict-dom:web/runtime.js"
   ref={null}
   style={{}}
@@ -196,7 +196,7 @@ exports[`Checkbox renders without label or description 1`] = `
     aria-checked={false}
     aria-label="Accept terms"
     className="borderStyle-x1y0btm7 margin-x1ghz6dp padding-x1717udv borderWidth-xmkeg23"
-    data-element-src="Checkbox/Checkbox.tsx:45"
+    data-element-src="Checkbox/Checkbox.tsx:50"
     data-style-src="react-strict-dom:web/runtime.js,web/runtime.js"
     disabled={false}
     onClick={[Function]}

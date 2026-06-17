@@ -234,4 +234,146 @@ describe('InputField', () => {
 
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });
+
+  it('focuses the input when the surrounding container is tapped', () => {
+    const focusMock = jest.fn();
+    const inputRef = { current: { focus: focusMock } as unknown as HTMLInputElement };
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <InputField
+          label="Email Address"
+          value=""
+          placeholderText="Enter your email"
+          onChangeText={() => { }}
+          inputRef={inputRef}
+          testID="email-input"
+        />,
+        { createNodeMock: () => ({ focus: focusMock }) }
+      );
+    });
+
+    const container = component!.root.findAll(
+      (node) => node.type === 'div' && typeof node.props.onClick === 'function'
+    )[0];
+
+    act(() => {
+      container.props.onClick();
+    });
+
+    expect(focusMock).toHaveBeenCalled();
+  });
+
+  it('does not focus the input on container tap when disabled', () => {
+    const focusMock = jest.fn();
+    const inputRef = { current: { focus: focusMock } as unknown as HTMLInputElement };
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <InputField
+          label="Email Address"
+          value=""
+          placeholderText="Enter your email"
+          onChangeText={() => { }}
+          disabled
+          inputRef={inputRef}
+          testID="email-input"
+        />,
+        { createNodeMock: () => ({ focus: focusMock }) }
+      );
+    });
+
+    const onClickDivs = component!.root.findAll(
+      (node) => node.type === 'div' && typeof node.props.onClick === 'function'
+    );
+
+    act(() => {
+      onClickDivs.forEach((c) => c.props.onClick({ stopPropagation: () => { } }));
+    });
+
+    expect(focusMock).not.toHaveBeenCalled();
+  });
+
+  it('does not focus on container tap when readOnly and onClick are set (caller navigation wins)', () => {
+    const onClickMock = jest.fn();
+    const focusMock = jest.fn();
+    const inputRef = { current: { focus: focusMock } as unknown as HTMLInputElement };
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <InputField
+          label="Pick a date"
+          value=""
+          placeholderText="Select"
+          readOnly
+          onClick={onClickMock}
+          inputRef={inputRef}
+          testID="readonly-input"
+        />,
+        { createNodeMock: () => ({ focus: focusMock }) }
+      );
+    });
+
+    // Only the outer Pressable should own an onClick (caller navigation). The
+    // inner container must not carry a focus handler in this mode.
+    const innerOnClickDivs = component!.root.findAll(
+      (node) =>
+        node.type === 'div' &&
+        typeof node.props.onClick === 'function' &&
+        node.props['data-testid'] !== 'pressable-trigger'
+    );
+
+    act(() => {
+      innerOnClickDivs.forEach((c) => c.props.onClick({ stopPropagation: () => { } }));
+    });
+
+    expect(focusMock).not.toHaveBeenCalled();
+  });
+
+  it('stops slot taps from bubbling up and focusing the input', () => {
+    const onCopyMock = jest.fn();
+    const focusMock = jest.fn();
+    const inputRef = { current: { focus: focusMock } as unknown as HTMLInputElement };
+    let component: renderer.ReactTestRenderer;
+
+    act(() => {
+      component = renderer.create(
+        <InputField
+          label="Token"
+          value="secret"
+          placeholderText="Token"
+          onChangeText={() => { }}
+          copyable
+          onCopy={onCopyMock}
+          inputRef={inputRef}
+          testID="token-input"
+        />,
+        { createNodeMock: () => ({ focus: focusMock }) }
+      );
+    });
+
+    // The slot container wraps the copy control and stops propagation so the
+    // container's focus handler never runs.
+    const slotContainer = component!.root.findAll(
+      (node) => node.type === 'div' && typeof node.props.onClick === 'function'
+    ).pop();
+
+    const stopPropagation = jest.fn();
+
+    act(() => {
+      slotContainer!.props.onClick({ stopPropagation });
+    });
+
+    const copyButton = component!.root.findByProps({ 'aria-label': 'Copy to clipboard' });
+    act(() => {
+      copyButton.props.onClick();
+    });
+
+    expect(stopPropagation).toHaveBeenCalledTimes(1);
+    expect(onCopyMock).toHaveBeenCalledTimes(1);
+    expect(focusMock).not.toHaveBeenCalled();
+  });
 });

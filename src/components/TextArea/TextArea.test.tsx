@@ -26,6 +26,16 @@ jest.mock('../FieldError', () => ({
   }) => <span id={id}>{children}</span>
 }))
 
+jest.mock('../Button', () => ({
+  Button: ({
+    onClick,
+    'aria-label': ariaLabel
+  }: {
+    onClick?: () => void
+    'aria-label'?: string
+  }) => <button aria-label={ariaLabel} onClick={onClick} />
+}))
+
 describe('TextArea', () => {
   it('renders with label and placeholder', () => {
     let component: renderer.ReactTestRenderer

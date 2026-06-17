@@ -1,6 +1,9 @@
 import React from 'react'
 import renderer, { act } from 'react-test-renderer'
-import { Dropdown } from './Dropdown'
+// Import the web implementation explicitly: the react-native jest preset would
+// otherwise resolve `./Dropdown` to `Dropdown.native.tsx`. Test files are
+// excluded from tsc, so the explicit extension is safe.
+import { Dropdown } from './Dropdown.tsx'
 
 jest.mock('./Dropdown.styles', () => ({
   styles: {
