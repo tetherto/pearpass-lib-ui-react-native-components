@@ -47,7 +47,7 @@
     "generate-icons:web": "svgr --out-dir src/icons/components src/icons/assets",
     "generate-icons:native": "svgr --native --ext native.tsx --no-index --out-dir src/icons/components src/icons/assets",
     "generate-icons": "npm run generate-icons:web && npm run generate-icons:native && node scripts/generate-icon-story.mjs",
-    "build": "npx tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json",
     "prepare": "npm run build && (husky || true)",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
@@ -111,6 +111,7 @@
     "storybook": "^10.2.13",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
+    "tsx": "^4.23.0"
   },
   "dependencies": {
     "react-strict-dom": "^0.0.55"
